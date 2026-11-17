@@ -18,7 +18,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="favicon-180.png">
-<meta name="theme-color" content="#F2A23A">
+<meta name="theme-color" content="#12172B">
 <style>
 html,body{margin:0;background:#FFFFFF}
 .lzh-pie{max-width:1080px;margin:0 auto;padding:40px 24px 48px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;
@@ -103,7 +103,21 @@ html,body{margin:0;background:#FFFFFF}
 .lzh-demo{font-size:11px;color:#5B6275;font-weight:500}
 
 /* Variante oscura: <section class="lzh lzh--oscuro"> */
-.lzh--oscuro .lzh-box{background:var(--tinta)}
+.lzh--oscuro .lzh-box{position:relative;background:var(--tinta);
+  background:radial-gradient(55% 45% at 50% 100%,rgba(64,104,255,.50) 0%,rgba(64,104,255,0) 70%),
+             radial-gradient(40% 30% at 85% 20%,rgba(64,104,255,.14) 0%,rgba(64,104,255,0) 70%),
+             radial-gradient(120% 70% at 50% 0%,#222C52 0%,#12172B 55%,#0A0D1C 100%)}
+.lzh--oscuro .lzh-phone-wrap{position:relative}
+.lzh--oscuro .lzh-phone-wrap::before{content:"";position:absolute;left:50%;top:8%;width:620px;height:620px;transform:translateX(-50%);
+  border-radius:50%;background:radial-gradient(closest-side,rgba(92,128,255,.55),rgba(64,104,255,.18) 55%,rgba(64,104,255,0));filter:blur(10px);pointer-events:none}
+.lzh--oscuro .lzh-hand{z-index:1}
+.lzh--oscuro .lzh-nav{background:transparent;box-shadow:none;padding-left:8px;padding-right:0}
+.lzh--oscuro .lzh-logo path{fill:#FFFFFF}
+.lzh--oscuro .lzh-links a,.lzh--oscuro .lzh-login{color:rgba(255,255,255,.86)}
+.lzh--oscuro .lzh-links a:hover,.lzh--oscuro .lzh-login:hover{color:#FFFFFF}
+.lzh--oscuro .lzh-nav .lzh-btn-tinta{background:#FFFFFF;color:var(--tinta)}
+.lzh--oscuro .lzh-serif{color:#F7BD66}
+.lzh--oscuro .lzh-rot{color:#FFFFFF}
 .lzh--oscuro .lzh-h1{color:var(--blanco)}
 .lzh--oscuro .lzh-sub{color:#E4E7EF}
 .lzh--oscuro .lzh-eyebrow{background:rgba(255,255,255,.08);color:var(--blanco);border:1px solid rgba(255,255,255,.14)}
@@ -140,7 +154,7 @@ html,body{margin:0;background:#FFFFFF}
 @media (prefers-reduced-motion:reduce){.lzh-btn{transition:none}.lzh-rot-in{animation:none}}
 </style>
 
-<section class="lzh" aria-label="Luzhero"><div class="lzh-box">
+<section class="lzh lzh--oscuro" aria-label="Luzhero"><div class="lzh-box">
   <nav class="lzh-nav" aria-label="Principal">
     <a href="https://web.luzhero.com/" aria-label="Luzhero, inicio"><svg class="lzh-logo" xmlns="http://www.w3.org/2000/svg" viewBox="15.0 -797.0 3608.0 849.0" role="img" aria-label="Luzhero">
   <path fill="#12172B" d="M55.0 0.0V-757.0H205.0V0.0Z M466.0 12.0Q400.0 12.0 353.5 -16.5Q307.0 -45.0 283.0 -96.0Q259.0 -147.0 259.0 -215.0V-546.0H409.0V-227.0Q409.0 -196.0 421.5 -172.5Q434.0 -149.0 457.0 -136.0Q480.0 -123.0 509.0 -123.0Q539.0 -123.0 561.5 -136.0Q584.0 -149.0 596.5 -172.5Q609.0 -196.0 609.0 -227.0V-546.0H759.0V0.0H619.0V-108.0L627.0 -84.0Q608.0 -35.0 565.5 -11.5Q523.0 12.0 466.0 12.0Z M780.0 0.0V-120.0L1094.0 -466.0L1116.0 -416.0H793.0V-546.0H1249.0V-426.0L943.0 -79.0L921.0 -130.0H1250.0V0.0Z M1271.0 0.0V-757.0H1421.0V-438.0L1403.0 -462.0Q1422.0 -511.0 1464.5 -534.5Q1507.0 -558.0 1564.0 -558.0Q1626.0 -558.0 1672.5 -532.0Q1719.0 -506.0 1745.0 -459.5Q1771.0 -413.0 1771.0 -351.0V0.0H1621.0V-319.0Q1621.0 -351.0 1608.5 -374.0Q1596.0 -397.0 1573.5 -410.0Q1551.0 -423.0 1521.0 -423.0Q1492.0 -423.0 1469.0 -410.0Q1446.0 -397.0 1433.5 -374.0Q1421.0 -351.0 1421.0 -319.0V0.0Z M2088.0 12.0Q2001.0 12.0 1937.0 -26.5Q1873.0 -65.0 1838.0 -130.0Q1803.0 -195.0 1803.0 -274.0Q1803.0 -356.0 1839.5 -420.0Q1876.0 -484.0 1938.0 -521.0Q2000.0 -558.0 2078.0 -558.0Q2143.0 -558.0 2193.0 -537.5Q2243.0 -517.0 2277.5 -480.0Q2312.0 -443.0 2330.0 -394.5Q2348.0 -346.0 2348.0 -289.0Q2348.0 -273.0 2346.5 -257.5Q2345.0 -242.0 2341.0 -231.0H1932.0V-341.0H2256.0L2185.0 -289.0Q2195.0 -332.0 2184.0 -365.5Q2173.0 -399.0 2145.5 -418.5Q2118.0 -438.0 2078.0 -438.0Q2039.0 -438.0 2011.0 -419.0Q1983.0 -400.0 1969.0 -363.0Q1955.0 -326.0 1958.0 -273.0Q1954.0 -227.0 1969.0 -192.0Q1984.0 -157.0 2015.0 -137.5Q2046.0 -118.0 2090.0 -118.0Q2130.0 -118.0 2158.5 -134.0Q2187.0 -150.0 2203.0 -178.0L2323.0 -121.0Q2307.0 -81.0 2272.5 -51.0Q2238.0 -21.0 2191.0 -4.5Q2144.0 12.0 2088.0 12.0Z M2391.0 0.0V-546.0H2531.0V-415.0L2521.0 -434.0Q2539.0 -503.0 2580.5 -527.5Q2622.0 -552.0 2679.0 -552.0H2711.0V-422.0H2664.0Q2609.0 -422.0 2575.0 -388.5Q2541.0 -355.0 2541.0 -294.0V0.0Z M3003.0 12.0Q2922.0 12.0 2855.5 -25.0Q2789.0 -62.0 2749.5 -126.5Q2710.0 -191.0 2710.0 -273.0Q2710.0 -356.0 2749.5 -420.0Q2789.0 -484.0 2855.5 -521.0Q2922.0 -558.0 3003.0 -558.0Q3084.0 -558.0 3150.0 -521.0Q3216.0 -484.0 3255.5 -420.0Q3295.0 -356.0 3295.0 -273.0Q3295.0 -191.0 3255.5 -126.5Q3216.0 -62.0 3150.0 -25.0Q3084.0 12.0 3003.0 12.0ZM3003.0 -123.0Q3044.0 -123.0 3074.5 -142.0Q3105.0 -161.0 3122.5 -195.0Q3140.0 -229.0 3140.0 -273.0Q3140.0 -317.0 3122.5 -350.5Q3105.0 -384.0 3074.5 -403.5Q3044.0 -423.0 3003.0 -423.0Q2962.0 -423.0 2931.0 -403.5Q2900.0 -384.0 2882.5 -350.5Q2865.0 -317.0 2865.0 -273.0Q2865.0 -229.0 2882.5 -195.0Q2900.0 -161.0 2931.0 -142.0Q2962.0 -123.0 3003.0 -123.0Z"/>
