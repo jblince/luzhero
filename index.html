@@ -210,6 +210,93 @@ html,body{margin:0;background:#FFFFFF}
     </div>
   </div>
 </div></section>
+<!-- ===== SECCIÓN · EL PROBLEMA ===== -->
+<style>
+.lzp{--tinta:#12172B;--suave:#4A5163;--lav:#4F5FD0;--ambar:#F2A23A;--alerta:#B4530A;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--tinta);padding:112px 24px 96px}
+.lzp *{box-sizing:border-box;margin:0;padding:0}
+.lzp-in{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px;align-items:center}
+.lzp-eti{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);margin-bottom:18px}
+.lzp-h2{font-weight:600;font-size:clamp(30px,3.3vw,44px);line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.lzp-h2 em{display:block;font-style:italic;font-weight:300;color:var(--lav)}
+.lzp-lista{list-style:none;margin-top:40px;display:flex;flex-direction:column;gap:28px}
+.lzp-lista li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;align-items:start}
+.lzp-ico{width:44px;height:44px;border-radius:12px;background:#F1F2F8;display:flex;align-items:center;justify-content:center}
+.lzp-ico svg{width:22px;height:22px;stroke:var(--tinta);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lzp-lista h3{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.lzp-lista p{font-size:16px;line-height:1.55;color:var(--suave)}
+
+/* Collage del caos */
+.lzp-caos{position:relative;border-radius:28px;overflow:hidden;padding:32px 28px;display:flex;flex-direction:column;gap:16px;
+  background:radial-gradient(80% 70% at 70% 30%,#E9ECF8 0%,#F4F5FA 60%,#F7F7FA 100%);border:1px solid #E6E8F0}
+.lzp-b{position:relative;background:#FFFFFF;border-radius:18px;padding:14px 16px;box-shadow:0 12px 30px -16px rgba(18,23,43,.35);
+  font-size:14px;line-height:1.45;max-width:270px;animation:lzpFlota 7s ease-in-out infinite}
+.lzp-b small{display:block;font-size:12px;font-weight:600;color:#6B7285;margin-bottom:4px}
+.lzp-tag{display:inline-block;margin-top:8px;font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 9px;background:#FDEBD0;color:var(--alerta)}
+.lzp-tag.gris{background:#EEF0F5;color:#5B6275}
+.lzp-file{display:flex;align-items:center;gap:10px;font-weight:600}
+.lzp-file i{flex:0 0 34px;height:40px;border-radius:6px;background:#E5484D;color:#fff;font-style:normal;font-size:10px;font-weight:800;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px}
+.lzp-badge{position:relative;display:flex;align-items:center;gap:10px;background:var(--tinta);color:#fff;border-radius:16px;padding:12px 16px;
+  font-size:14px;font-weight:600;box-shadow:0 14px 34px -14px rgba(18,23,43,.6);animation:lzpFlota 8s ease-in-out infinite}
+.lzp-badge b{background:#E5484D;border-radius:999px;min-width:28px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;padding:0 7px}
+.lzp-duda{position:relative;font-weight:600;font-style:italic;font-size:15px;color:var(--tinta);background:#FFF6E8;border:1px dashed #E8B66A;
+  border-radius:14px;padding:10px 14px;animation:lzpFlota 9s ease-in-out infinite}
+.lzp-badge{align-self:flex-end;margin-right:4%;transform:rotate(2deg);animation-delay:-4s}
+.lzp-b1{align-self:flex-start;transform:rotate(-2deg);animation-delay:-1s;margin-top:-28px}
+.lzp-b2{align-self:flex-end;margin-right:2%;transform:rotate(2deg);animation-delay:-3s}
+.lzp-d2{align-self:center;margin-left:-8%;transform:rotate(-1.5deg);animation-delay:-2.5s}
+.lzp-b3{align-self:flex-start;margin-left:6%;transform:rotate(1deg);animation-delay:-5s}
+.lzp-d1{align-self:flex-end;margin-right:6%;transform:rotate(2deg);animation-delay:-6s}
+.lzp-b4{align-self:flex-start;margin-left:14%;transform:rotate(-1.5deg);animation-delay:-2s}
+@keyframes lzpFlota{0%,100%{translate:0 0}50%{translate:0 -8px}}
+
+@media (max-width:900px){
+  .lzp{padding:80px 20px 64px}
+  .lzp-in{grid-template-columns:minmax(0,1fr);gap:40px}
+}
+@media (max-width:520px){
+  .lzp-caos{padding:24px 18px;gap:14px}
+  .lzp-b{max-width:250px;font-size:13.5px}
+  .lzp-b1{margin-top:-20px}
+  .lzp-d2,.lzp-d1{font-size:14px}
+  .lzp-b4{margin-left:6%}
+}
+@media (prefers-reduced-motion:reduce){.lzp-b,.lzp-badge,.lzp-duda{animation:none}}
+</style>
+
+<section class="lzp" id="problema" aria-labelledby="lzp-titulo">
+  <div class="lzp-in">
+    <div>
+      <p class="lzp-eti">El problema</p>
+      <h2 class="lzp-h2" id="lzp-titulo">Tu agencia vende por WhatsApp. <em>Pero no ves lo que pasa ahí.</em></h2>
+      <ul class="lzp-lista">
+        <li>
+          <span class="lzp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M12 8v4l2 2"/></svg></span>
+          <div><h3>Leads que se enfrían</h3><p>Los mensajes que llegan de tus anuncios en Meta se pierden entre los chats personales de cada asesor.</p></div>
+        </li>
+        <li>
+          <span class="lzp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/><path d="M12 13v3"/><path d="M12 19h.01"/></svg></span>
+          <div><h3>Cotizaciones sin seguimiento</h3><p>Nadie sabe cuántas propuestas salieron ayer ni cuáles llevan más de 48 horas sin respuesta.</p></div>
+        </li>
+        <li>
+          <span class="lzp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l3-3 3 2 5-6"/><path d="M18 8h.01"/></svg></span>
+          <div><h3>Números a fin de mes</h3><p>Cada asesor trabaja a su manera y tú te enteras de cómo va el negocio cuando ya es tarde para corregir.</p></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="lzp-caos" aria-hidden="true">
+      <div class="lzp-badge">Chats sin leer <b>47</b></div>
+      <div class="lzp-b lzp-b1"><small>Cliente · Anuncio de Meta</small>Hola, ¿me pasas precio para Cancún en diciembre? Somos 4.<span class="lzp-tag">Sin responder · 2 días</span></div>
+      <div class="lzp-b lzp-b2"><small>Cliente</small>¿Sigue disponible el plan a Punta Cana?<span class="lzp-tag gris">Visto · ayer</span></div>
+      <div class="lzp-duda lzp-d2">¿Quién tenía al cliente de Japón?</div>
+      <div class="lzp-b lzp-b3"><div class="lzp-file"><i>PDF</i>Cotizacion_Japon_final_v3.pdf</div><span class="lzp-tag gris">Enviado · sin seguimiento</span></div>
+      <div class="lzp-duda lzp-d1">¿Cuánto vendimos esta semana?</div>
+      <div class="lzp-b lzp-b4"><small>Cliente</small>Al final lo reservamos con otra agencia, gracias.<span class="lzp-tag">Venta perdida</span></div>
+    </div>
+  </div>
+</section>
+<!-- ===== FIN SECCIÓN · EL PROBLEMA ===== -->
 <footer class="lzh-pie">
   <span>© 2026 Luzhero</span>
   <nav aria-label="Legal">
