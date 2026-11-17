@@ -322,6 +322,299 @@ html,body{margin:0;background:#FFFFFF}
 })();
 </script>
 <!-- ===== FIN SECCIÓN · EL PROBLEMA ===== -->
+<!-- ===== SECCIÓN · EL CICLO COMERCIAL ===== -->
+<style>
+.lzc{--tinta:#12172B;--lav:#B4C3FF;--ambar:#F2A23A;font-family:'Plus Jakarta Sans',system-ui,sans-serif;padding:0 12px}
+.lzc *{box-sizing:border-box;margin:0;padding:0}
+.lzc-box{border-radius:40px;overflow:hidden;color:#fff;padding:104px 24px 112px;
+  background:radial-gradient(50% 40% at 70% 65%,rgba(64,104,255,.28) 0%,rgba(64,104,255,0) 70%),
+             radial-gradient(120% 70% at 50% 0%,#161D3A 0%,#0B0F22 50%,#05070F 100%)}
+.lzc-cab{max-width:760px;margin:0 auto;text-align:center}
+.lzc-eti{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:18px}
+.lzc-h2{font-weight:600;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.lzc-h2 em{font-style:italic;font-weight:300;color:var(--lav)}
+.lzc-sub{margin-top:16px;font-size:clamp(16px,1.4vw,19px);line-height:1.5;color:rgba(255,255,255,.72)}
+
+/* Pestañas */
+.lzc-tabs{max-width:860px;margin:48px auto 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.lzc-tab{appearance:none;border:0;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-radius:14px;padding:12px 10px 14px;
+  font:600 15px/1.2 'Plus Jakarta Sans',system-ui,sans-serif;cursor:pointer;position:relative;overflow:hidden;text-align:center;transition:background .2s,color .2s}
+.lzc-tab span{display:block;font-size:12px;font-weight:500;color:rgba(255,255,255,.45);margin-bottom:3px}
+.lzc-tab:hover{background:rgba(255,255,255,.1);color:#fff}
+.lzc-tab[aria-selected="true"]{background:rgba(180,195,255,.16);color:#fff}
+.lzc-tab:focus-visible{outline:2px solid var(--lav);outline-offset:2px}
+.lzc-barra{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--ambar)}
+
+/* Escena */
+.lzc-escena{max-width:1120px;margin:48px auto 0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:56px;align-items:center}
+.lzc-txt h3{font-size:clamp(24px,2.4vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.lzc-txt p{margin-top:14px;font-size:17px;line-height:1.6;color:rgba(255,255,255,.75)}
+.lzc-mods{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.lzc-mods span{font-size:13px;font-weight:600;border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.lzc-panel[hidden]{display:none}
+.lzc-panel{animation:lzcEntra .45s ease both}
+@keyframes lzcEntra{from{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}
+
+/* Portátil */
+.lzc-comp{position:relative;padding:0 0 40px 0}
+.lzc-lap{border-radius:16px;background:#1B2140;padding:10px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08)}
+.lzc-nav{display:flex;align-items:center;gap:6px;padding:2px 6px 10px}
+.lzc-nav i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18)}
+.lzc-nav b{margin-left:12px;flex:1;height:22px;border-radius:7px;background:rgba(255,255,255,.08);font:500 11px/22px 'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,.55);padding-left:10px}
+.lzc-pant{aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:#F5F6FA;display:grid;grid-template-columns:150px minmax(0,1fr);color:var(--tinta)}
+.lzc-pant img{grid-column:1 / -1;width:100%;height:100%;object-fit:cover;object-position:top left}
+.lzc-menu{background:#fff;border-right:1px solid #E6E8F0;padding:14px 10px;display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:#5B6275}
+.lzc-menu strong{font-size:15px;font-weight:800;color:var(--tinta);letter-spacing:-.03em;margin:0 0 12px 6px}
+.lzc-menu strong::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ambar);margin-left:1px}
+.lzc-menu span{padding:7px 8px;border-radius:7px}
+.lzc-menu span.on{background:#EEF1FF;color:#2F3FAE}
+.lzc-cont{padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.lzc-cont h4{font-size:15px;font-weight:700}
+.lzc-esq{flex:1;border:2px dashed #CDD2E2;border-radius:10px;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:13px;font-weight:600;color:#7A8196;padding:12px;background:repeating-linear-gradient(135deg,#F5F6FA 0 10px,#EFF1F7 10px 20px)}
+
+/* Móvil (WhatsApp) */
+.lzc-comp{margin-right:44px}
+.lzc-tel{position:absolute;right:-44px;bottom:-28px;width:228px;border-radius:34px;background:#000;padding:8px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.12)}
+.lzc-wa{border-radius:27px;overflow:hidden;background:#0B141A;height:410px;display:flex;flex-direction:column;font-size:12px;line-height:1.4}
+.lzc-wa-cab{display:flex;align-items:center;gap:8px;background:#1F2C34;padding:26px 12px 9px;color:#E9EDEF}
+.lzc-wa-cab svg{width:28px;height:28px;border-radius:50%;flex:0 0 28px}
+.lzc-wa-cab b{display:block;font-size:13px;font-weight:600}
+.lzc-wa-cab small{font-size:10.5px;color:#8696A0}
+.lzc-wa-chat{flex:1;padding:10px 8px;display:flex;flex-direction:column;gap:6px;overflow:hidden;justify-content:flex-end;
+  background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px);background-size:14px 14px}
+.lzc-m{max-width:86%;border-radius:9px;padding:6px 8px 4px;color:#E9EDEF;background:#202C33;align-self:flex-start;white-space:pre-line}
+.lzc-m.yo{background:#005C4B;align-self:flex-end}
+.lzc-m time{display:block;text-align:right;font-size:9.5px;color:rgba(233,237,239,.55);margin-top:2px}
+.lzc-bts{align-self:flex-start;width:86%;display:flex;flex-direction:column;gap:2px;margin-top:-4px}
+.lzc-bts span{background:#202C33;color:#53BDEB;text-align:center;padding:7px;font-weight:600;border-radius:0}
+.lzc-bts span:first-child{border-radius:0}
+.lzc-bts span:last-child{border-radius:0 0 9px 9px}
+.lzc-flyer{height:84px;border-radius:7px;margin:-2px -4px 6px;background:linear-gradient(135deg,#1FA2C6 0%,#5ED1C9 45%,#F7D58B 100%);position:relative}
+.lzc-flyer::after{content:"PUNTA CANA";position:absolute;left:8px;bottom:6px;font-weight:800;font-size:13px;letter-spacing:.06em;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+
+@media (max-width:960px){
+  .lzc-escena{grid-template-columns:minmax(0,1fr);gap:28px}
+  .lzc-txt{text-align:center}
+  .lzc-mods{justify-content:center}
+}
+@media (max-width:640px){
+  .lzc{padding:0 8px}
+  .lzc-box{border-radius:28px;padding:72px 14px 80px}
+  .lzc-tabs{grid-template-columns:repeat(5,minmax(64px,1fr));overflow-x:auto;gap:6px;padding-bottom:4px}
+  .lzc-tab{font-size:13px;padding:10px 6px 12px}
+  .lzc-pant{grid-template-columns:minmax(0,1fr)}
+  .lzc-menu{display:none}
+  .lzc-comp{padding:0 0 170px;margin-right:0}
+  .lzc-tel{right:50%;bottom:0;translate:50% 0;width:210px}
+  .lzc-wa{height:330px;font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){.lzc-panel{animation:none}}
+</style>
+
+<section class="lzc" id="como-funciona" aria-labelledby="lzc-titulo"><div class="lzc-box">
+  <div class="lzc-cab">
+    <p class="lzc-eti">Cómo funciona</p>
+    <h2 class="lzc-h2" id="lzc-titulo">Todo tu ciclo comercial, <em>en un solo lugar.</em></h2>
+    <p class="lzc-sub">Tu equipo trabaja en WhatsApp. Tú lo ves todo en la web. Lo que pasa en uno aparece en el otro.</p>
+  </div>
+
+  <div class="lzc-tabs" role="tablist" aria-label="Etapas del ciclo comercial">
+    <button class="lzc-tab" role="tab" id="lzc-t1" aria-controls="lzc-p1" aria-selected="true"><span>01</span>Captar<i class="lzc-barra"></i></button>
+    <button class="lzc-tab" role="tab" id="lzc-t2" aria-controls="lzc-p2" aria-selected="false" tabindex="-1"><span>02</span>Atender<i class="lzc-barra"></i></button>
+    <button class="lzc-tab" role="tab" id="lzc-t3" aria-controls="lzc-p3" aria-selected="false" tabindex="-1"><span>03</span>Cotizar<i class="lzc-barra"></i></button>
+    <button class="lzc-tab" role="tab" id="lzc-t4" aria-controls="lzc-p4" aria-selected="false" tabindex="-1"><span>04</span>Cerrar<i class="lzc-barra"></i></button>
+    <button class="lzc-tab" role="tab" id="lzc-t5" aria-controls="lzc-p5" aria-selected="false" tabindex="-1"><span>05</span>Medir<i class="lzc-barra"></i></button>
+  </div>
+
+  <!-- 01 · CAPTAR -->
+  <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p1" aria-labelledby="lzc-t1">
+    <div class="lzc-txt">
+      <h3>Capta cada lead de tus anuncios</h3>
+      <p>Quien escribe desde tus anuncios de Meta llega a un chatbot que le ofrece tus planes armados, con precio y flyer, o le pide los datos de su viaje a medida.</p>
+      <div class="lzc-mods"><span>Chatbot de entrada</span><span>Planes</span></div>
+    </div>
+    <div class="lzc-comp" aria-hidden="true">
+      <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/planes</b></div>
+        <div class="lzc-pant">
+          <div class="lzc-menu"><strong>luzhero</strong><span>Inicio</span><span>Cotizaciones</span><span>Mis viajes</span><span class="on">Planes</span><span>Inbox</span><span>Campaña</span></div>
+          <div class="lzc-cont"><h4>Planes</h4><div class="lzc-esq">Captura de la pantalla Planes</div></div>
+        </div></div>
+      <div class="lzc-tel"><div class="lzc-wa">
+        <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Viajes Ejemplo</b><small>Cuenta de empresa</small></div></div>
+        <div class="lzc-wa-chat">
+          <div class="lzc-m yo">hola<time>9:41</time></div>
+          <div class="lzc-m">¡Hola! Qué gusto saludarte. 👋
+Soy tu asesora de viajes. ¿Qué tipo de experiencia estás buscando hoy?<time>9:41</time></div>
+          <div class="lzc-bts"><span>✈️ Viaje a medida</span><span>🌍 Plan armado</span></div>
+          <div class="lzc-m yo">🌍 Plan armado<time>9:42</time></div>
+          <div class="lzc-m"><div class="lzc-flyer"></div>Punta Cana · Todo incluido
+7 noches · desde 1.290 €
+Salidas: 12 dic y 9 ene<time>9:42</time></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 02 · ATENDER -->
+  <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p2" aria-labelledby="lzc-t2" hidden>
+    <div class="lzc-txt">
+      <h3>Atiende con todo el equipo en una bandeja</h3>
+      <p>Las conversaciones dejan de vivir en los móviles de cada asesor. Un tablero te muestra en qué punto está cada cliente, y quien pide hablar con un asesor entra con todos sus datos.</p>
+      <div class="lzc-mods"><span>Inbox</span><span>Tablero Kanban</span></div>
+    </div>
+    <div class="lzc-comp" aria-hidden="true">
+      <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/inbox</b></div>
+        <div class="lzc-pant">
+          <div class="lzc-menu"><strong>luzhero</strong><span>Inicio</span><span>Cotizaciones</span><span>Mis viajes</span><span>Planes</span><span class="on">Inbox</span><span>Campaña</span></div>
+          <div class="lzc-cont"><h4>Inbox</h4><div class="lzc-esq">Captura del Inbox con el tablero (Nuevos · Hablando · Cotizada…)</div></div>
+        </div></div>
+      <div class="lzc-tel"><div class="lzc-wa">
+        <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Viajes Ejemplo</b><small>Cuenta de empresa</small></div></div>
+        <div class="lzc-wa-chat">
+          <div class="lzc-m yo">Quiero el plan de Punta Cana para 4 personas, ¿me ayudas?<time>9:44</time></div>
+          <div class="lzc-m">¡Claro! Te paso con Laura, tu asesora. Ya tiene todos tus datos. 😊<time>9:44</time></div>
+          <div class="lzc-m">Hola, soy Laura. ¿Salen el 12 de diciembre? Te preparo la propuesta ahora mismo.<time>9:46</time></div>
+          <div class="lzc-m yo">¡Perfecto, gracias!<time>9:47</time></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 03 · COTIZAR -->
+  <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p3" aria-labelledby="lzc-t3" hidden>
+    <div class="lzc-txt">
+      <h3>Cotiza en 3-5 minutos</h3>
+      <p>El asesor pega el texto del GDS y Luzhero crea una propuesta visual con la marca de tu agencia. Cotizar ya es registrar: entra sola en el pipeline, sin trabajo extra.</p>
+      <div class="lzc-mods"><span>Propuestas digitales</span><span>Asistente de WhatsApp</span></div>
+    </div>
+    <div class="lzc-comp" aria-hidden="true">
+      <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/cotizaciones</b></div>
+        <div class="lzc-pant">
+          <div class="lzc-menu"><strong>luzhero</strong><span>Inicio</span><span class="on">Cotizaciones</span><span>Mis viajes</span><span>Planes</span><span>Inbox</span><span>Campaña</span></div>
+          <div class="lzc-cont"><h4>Nueva cotización</h4><div class="lzc-esq">Captura: texto del GDS → propuesta visual</div></div>
+        </div></div>
+      <div class="lzc-tel"><div class="lzc-wa">
+        <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Asistente Luzhero</b><small>Cuenta de empresa</small></div></div>
+        <div class="lzc-wa-chat">
+          <div class="lzc-m">Asistente Luzhero ✈️
+¡Hola! Selecciona la acción que deseas realizar.<time>9:50</time></div>
+          <div class="lzc-bts"><span>Cotizar</span><span>Actualizar</span><span>Viajes</span><span>Mi Rendimiento</span></div>
+          <div class="lzc-m yo">Cotizar<time>9:50</time></div>
+          <div class="lzc-m">¿Qué tipo de cotización quieres crear?<time>9:50</time></div>
+          <div class="lzc-bts"><span>Digital</span><span>Texto</span><span>Registro</span></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 04 · CERRAR -->
+  <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p4" aria-labelledby="lzc-t4" hidden>
+    <div class="lzc-txt">
+      <h3>Cierra y reactiva</h3>
+      <p>Marca cada venta desde WhatsApp en dos toques. Los viajes vendidos aparecen en Mis viajes, y con campañas por WhatsApp reactivas a quien no compró.</p>
+      <div class="lzc-mods"><span>Estados en 2 toques</span><span>Mis viajes</span><span>Campañas</span></div>
+    </div>
+    <div class="lzc-comp" aria-hidden="true">
+      <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/campana</b></div>
+        <div class="lzc-pant">
+          <div class="lzc-menu"><strong>luzhero</strong><span>Inicio</span><span>Cotizaciones</span><span>Mis viajes</span><span>Planes</span><span>Inbox</span><span class="on">Campaña</span></div>
+          <div class="lzc-cont"><h4>Campañas</h4><div class="lzc-esq">Captura de Mis viajes o Campañas</div></div>
+        </div></div>
+      <div class="lzc-tel"><div class="lzc-wa">
+        <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Asistente Luzhero</b><small>Cuenta de empresa</small></div></div>
+        <div class="lzc-wa-chat">
+          <div class="lzc-m">Cotizaciones pendientes
+Selecciona la que haya tenido novedades.<time>10:15</time></div>
+          <div class="lzc-m yo">María G. · Punta Cana · 5.160 €<time>10:15</time></div>
+          <div class="lzc-m">¿Cómo quedó esta cotización?<time>10:15</time></div>
+          <div class="lzc-bts"><span>🟢 Venta</span><span>🔴 Cancelada</span></div>
+          <div class="lzc-m yo">🟢 Venta<time>10:16</time></div>
+          <div class="lzc-m">✅ Listo, quedó registrada como venta.<time>10:16</time></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- 05 · MEDIR -->
+  <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p5" aria-labelledby="lzc-t5" hidden>
+    <div class="lzc-txt">
+      <h3>Mide tu negocio cada mañana</h3>
+      <p>Un panel con ventas, cotizaciones abiertas y rendimiento por asesor. Y a las 8:00, el resumen del día llega a tu WhatsApp sin que lo pidas.</p>
+      <div class="lzc-mods"><span>Panel de inicio</span><span>Resumen de las 8:00</span><span>Rendimiento por asesor</span></div>
+    </div>
+    <div class="lzc-comp" aria-hidden="true">
+      <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/inicio</b></div>
+        <div class="lzc-pant">
+          <div class="lzc-menu"><strong>luzhero</strong><span class="on">Inicio</span><span>Cotizaciones</span><span>Mis viajes</span><span>Planes</span><span>Inbox</span><span>Campaña</span></div>
+          <div class="lzc-cont"><h4>Inicio</h4><div class="lzc-esq">Captura del panel de Inicio</div></div>
+        </div></div>
+      <div class="lzc-tel"><div class="lzc-wa">
+        <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Asistente Luzhero</b><small>Cuenta de empresa</small></div></div>
+        <div class="lzc-wa-chat">
+          <div class="lzc-m">Resumen Diario Viajes Ejemplo
+
+🏆 Ventas del mes: 48.250 €
+(Laura: 21.400 € · Andrés: 15.100 € · Sofía: 11.750 €)
+
+🎯 Cotizaciones abiertas (-48h): 9
+
+💸 Cotizaciones abiertas (+48h): 6
+(Laura: 3 • Andrés: 2 • Sofía: 1)<time>8:00</time></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</div></section>
+
+<script>
+/* Pestañas del ciclo: avanzan solas cada 6 s; se detienen si el visitante elige una */
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.lzc-tab'));
+  if (!tabs.length) return;
+  var paneles = tabs.map(function(t){ return document.getElementById(t.getAttribute('aria-controls')); });
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var actual = 0, auto = !reduce, inicio = 0, DUR = 6000, raf;
+  function mostrar(i, foco){
+    tabs.forEach(function(t, k){
+      var on = k === i;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      paneles[k].hidden = !on;
+      t.querySelector('.lzc-barra').style.width = '0';
+    });
+    actual = i; inicio = performance.now();
+    if (foco) tabs[i].focus();
+  }
+  function bucle(ahora){
+    if (!auto) return;
+    var p = Math.min(1, (ahora - inicio) / DUR);
+    tabs[actual].querySelector('.lzc-barra').style.width = (p * 100) + '%';
+    if (p >= 1) mostrar((actual + 1) % tabs.length);
+    raf = requestAnimationFrame(bucle);
+  }
+  function parar(){ auto = false; cancelAnimationFrame(raf); tabs.forEach(function(t){ t.querySelector('.lzc-barra').style.width = '0'; }); }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ parar(); mostrar(i); });
+    t.addEventListener('keydown', function(e){
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d){ e.preventDefault(); parar(); mostrar((actual + d + tabs.length) % tabs.length, true); }
+    });
+  });
+  mostrar(0);
+  if (auto){
+    /* Solo empieza a avanzar cuando la sección es visible */
+    var sec = document.getElementById('como-funciona');
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(es, obs){
+        if (es[0].isIntersecting){ inicio = performance.now(); raf = requestAnimationFrame(bucle); obs.disconnect(); }
+      }, {threshold: .35}).observe(sec);
+    } else { raf = requestAnimationFrame(bucle); }
+  }
+})();
+</script>
+<!-- ===== FIN SECCIÓN · EL CICLO COMERCIAL ===== -->
 <footer class="lzh-pie">
   <span>© 2026 Luzhero</span>
   <nav aria-label="Legal">
