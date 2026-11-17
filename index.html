@@ -248,7 +248,18 @@ html,body{margin:0;background:#FFFFFF}
 .lzp-b3{align-self:flex-start;margin-left:6%;transform:rotate(1deg);animation-delay:-5s}
 .lzp-d1{align-self:flex-end;margin-right:6%;transform:rotate(2deg);animation-delay:-6s}
 .lzp-b4{align-self:flex-start;margin-left:14%;transform:rotate(-1.5deg);animation-delay:-2s}
-@keyframes lzpFlota{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes lzpFlota{0%,100%{translate:0 0;rotate:0deg}25%{translate:3px -7px;rotate:.8deg}50%{translate:0 -13px;rotate:0deg}75%{translate:-3px -6px;rotate:-.8deg}}
+.lzp-b{animation-duration:3.8s}
+.lzp-b2{animation-duration:3.2s}
+.lzp-b3{animation-duration:4.4s}
+.lzp-b4{animation-duration:3.5s}
+.lzp-duda{animation-duration:4.1s}
+.lzp-d1{animation-duration:3.6s}
+.lzp-badge{animation-duration:2.9s}
+.lzp-badge b{transition:transform .18s ease}
+.lzp-badge b.lzp-latido{transform:scale(1.35)}
+.lzp-b1 .lzp-tag{animation:lzpAlerta 1.6s ease-in-out infinite}
+@keyframes lzpAlerta{0%,100%{background:#FDEBD0}50%{background:#FBD3A3}}
 
 @media (max-width:900px){
   .lzp{padding:80px 20px 64px}
@@ -261,7 +272,7 @@ html,body{margin:0;background:#FFFFFF}
   .lzp-d2,.lzp-d1{font-size:14px}
   .lzp-b4{margin-left:6%}
 }
-@media (prefers-reduced-motion:reduce){.lzp-b,.lzp-badge,.lzp-duda{animation:none}}
+@media (prefers-reduced-motion:reduce){.lzp-b,.lzp-badge,.lzp-duda,.lzp-b1 .lzp-tag{animation:none}}
 </style>
 
 <section class="lzp" id="problema" aria-labelledby="lzp-titulo">
@@ -286,7 +297,7 @@ html,body{margin:0;background:#FFFFFF}
     </div>
 
     <div class="lzp-caos" aria-hidden="true">
-      <div class="lzp-badge">Chats sin leer <b>47</b></div>
+      <div class="lzp-badge">Chats sin leer <b id="lzp-contador">47</b></div>
       <div class="lzp-b lzp-b1"><small>Cliente · Anuncio de Meta</small>Hola, ¿me pasas precio para Cancún en diciembre? Somos 4.<span class="lzp-tag">Sin responder · 2 días</span></div>
       <div class="lzp-b lzp-b2"><small>Cliente</small>¿Sigue disponible el plan a Punta Cana?<span class="lzp-tag gris">Visto · ayer</span></div>
       <div class="lzp-duda lzp-d2">¿Quién tenía al cliente de Japón?</div>
@@ -296,6 +307,20 @@ html,body{margin:0;background:#FFFFFF}
     </div>
   </div>
 </section>
+<script>
+/* El contador de chats sin leer sube solo: el problema crece mientras miras */
+(function(){
+  var el = document.getElementById('lzp-contador');
+  if (!el || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  var n = 47;
+  setInterval(function(){
+    n = n >= 63 ? 47 : n + 1 + (Math.random() < .3 ? 1 : 0);
+    el.textContent = n;
+    el.classList.add('lzp-latido');
+    setTimeout(function(){ el.classList.remove('lzp-latido'); }, 180);
+  }, 1700);
+})();
+</script>
 <!-- ===== FIN SECCIÓN · EL PROBLEMA ===== -->
 <footer class="lzh-pie">
   <span>© 2026 Luzhero</span>
