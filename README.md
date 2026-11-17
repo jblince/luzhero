@@ -1,6 +1,6 @@
 # Luzhero · web
 
-Home de Luzhero (www.luzhero.com), publicada con Cloudflare Pages.
+Home de Luzhero (web.luzhero.com), publicada con Cloudflare Pages.
 
 - `index.html`: la página (HTML y CSS, sin build).
 - `mano.webp`, favicons y `og.png`: imágenes.
