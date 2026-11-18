@@ -683,6 +683,79 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
   </div>
 </section>
 <!-- ===== FIN SECCIÓN · DUEÑO Y ASESOR ===== -->
+<!-- ===== SECCIÓN · MANIFIESTO (frase que se escribe sola) ===== -->
+<style>
+.lzm{--turq:#02C5CA;font-family:'Plus Jakarta Sans',system-ui,sans-serif;padding:0 12px}
+.lzm *{box-sizing:border-box;margin:0;padding:0}
+.lzm-box{border-radius:40px;overflow:hidden;color:#fff;padding:clamp(120px,16vw,200px) 24px;text-align:center;
+  background:radial-gradient(45% 55% at 50% 50%,rgba(2,197,202,.12) 0%,rgba(2,197,202,0) 70%),
+             radial-gradient(120% 80% at 50% 0%,#141A33 0%,#0A0D1E 55%,#05070F 100%)}
+.lzm-frase{position:relative;max-width:980px;margin:0 auto;font-weight:600;font-size:clamp(32px,5vw,68px);line-height:1.12;letter-spacing:-.035em}
+.lzm-fantasma{visibility:hidden}
+.lzm-escrito{position:absolute;inset:0}
+.lzm-frase em{font-style:italic;font-weight:300;color:var(--turq)}
+.lzm-cursor{display:inline-block;width:.06em;height:.9em;margin-left:.05em;vertical-align:-.08em;background:var(--turq);animation:lzmParpadeo 1s steps(1) infinite}
+@keyframes lzmParpadeo{50%{opacity:0}}
+.lzm-resp{max-width:640px;margin:36px auto 0;font-size:clamp(17px,1.6vw,21px);line-height:1.55;color:rgba(255,255,255,.72);
+  opacity:0;translate:0 10px;transition:opacity .8s ease,translate .8s ease}
+.lzm-resp.lzm-ver{opacity:1;translate:0 0}
+.lzm-resp b{color:#fff;font-weight:600}
+.lzm-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:640px){.lzm{padding:0 8px}.lzm-box{border-radius:28px}}
+@media (prefers-reduced-motion:reduce){.lzm-cursor{animation:none}.lzm-resp{transition:none}}
+</style>
+
+<section class="lzm" id="manifiesto" aria-labelledby="lzm-titulo"><div class="lzm-box">
+  <h2 class="lzm-sr" id="lzm-titulo">¿Cuántas decisiones de tu agencia tomas a ciegas?</h2>
+  <p class="lzm-frase" aria-hidden="true">
+    <span class="lzm-fantasma">¿Cuántas decisiones de tu agencia tomas <em>a ciegas</em>?</span>
+    <span class="lzm-escrito" id="lzm-escrito"></span>
+  </p>
+  <p class="lzm-resp" id="lzm-resp">Cada conversación ya es un dato. <b>Luzhero lo convierte en decisiones.</b></p>
+</div></section>
+
+<script>
+/* Escribe la frase letra a letra cuando la sección entra en pantalla */
+(function(){
+  var dest = document.getElementById('lzm-escrito'), resp = document.getElementById('lzm-resp');
+  if (!dest) return;
+  var partes = [{t:'¿Cuántas decisiones de tu agencia tomas '}, {t:'a ciegas', em:true}, {t:'?'}];
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cursor = document.createElement('span'); cursor.className = 'lzm-cursor';
+  function pintar(n){
+    dest.textContent = '';
+    var resto = n;
+    partes.forEach(function(p){
+      if (resto <= 0) return;
+      var trozo = p.t.slice(0, resto); resto -= trozo.length;
+      if (p.em){ var e = document.createElement('em'); e.textContent = trozo; dest.appendChild(e); }
+      else dest.appendChild(document.createTextNode(trozo));
+    });
+    dest.appendChild(cursor);
+  }
+  var total = partes.reduce(function(a, p){ return a + p.t.length; }, 0);
+  if (reduce){ pintar(total); resp.classList.add('lzm-ver'); return; }
+  pintar(0);
+  function escribir(){
+    var n = 0;
+    (function paso(){
+      n++; pintar(n);
+      if (n < total){
+        var c = partes.map(function(p){return p.t;}).join('').charAt(n - 1);
+        setTimeout(paso, c === ' ' ? 70 : 38 + Math.random() * 45);
+      } else {
+        setTimeout(function(){ resp.classList.add('lzm-ver'); }, 650);
+      }
+    })();
+  }
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(es, obs){
+      if (es[0].isIntersecting){ obs.disconnect(); setTimeout(escribir, 350); }
+    }, {threshold: .55}).observe(document.getElementById('manifiesto'));
+  } else { escribir(); }
+})();
+</script>
+<!-- ===== FIN SECCIÓN · MANIFIESTO ===== -->
 <footer class="lzh-pie">
   <span>© 2026 Luzhero</span>
   <nav aria-label="Legal">
