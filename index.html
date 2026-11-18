@@ -361,8 +361,8 @@ html,body{margin:0;background:#FFFFFF}
 .lzc-nav{display:flex;align-items:center;gap:6px;padding:2px 6px 10px}
 .lzc-nav i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18)}
 .lzc-nav b{margin-left:12px;flex:1;height:22px;border-radius:7px;background:rgba(255,255,255,.08);font:500 11px/22px 'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,.55);padding-left:10px}
-.lzc-pant{aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:#F5F6FA;display:grid;grid-template-columns:150px minmax(0,1fr);color:var(--tinta)}
-.lzc-pant img{grid-column:1 / -1;width:100%;height:100%;object-fit:cover;object-position:top left}
+.lzc-pant{aspect-ratio:1600/790;border-radius:8px;overflow:hidden;background:#F5F6FA}
+.lzc-pant img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left}
 .lzc-menu{background:#fff;border-right:1px solid #E6E8F0;padding:14px 10px;display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;color:#5B6275}
 .lzc-menu strong{font-size:15px;font-weight:800;color:var(--tinta);letter-spacing:-.03em;margin:0 0 12px 6px}
 .lzc-menu strong::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--ambar);margin-left:1px}
@@ -404,11 +404,9 @@ html,body{margin:0;background:#FFFFFF}
   .lzc-box{border-radius:28px;padding:72px 14px 80px}
   .lzc-tabs{grid-template-columns:repeat(5,minmax(64px,1fr));overflow-x:auto;gap:6px;padding-bottom:4px}
   .lzc-tab{font-size:13px;padding:10px 6px 12px}
-  .lzc-pant{grid-template-columns:minmax(0,1fr)}
-  .lzc-menu{display:none}
-  .lzc-comp{padding:0 0 170px;margin-right:0}
-  .lzc-tel{right:50%;bottom:0;translate:50% 0;width:210px}
-  .lzc-wa{height:330px;font-size:11px}
+  .lzc-comp{padding:0 0 150px;margin-right:0}
+  .lzc-tel{right:-4px;bottom:0;translate:none;width:176px;border-radius:28px;padding:6px}
+  .lzc-wa{height:300px;font-size:10.5px;border-radius:23px}
 }
 @media (prefers-reduced-motion:reduce){.lzc-panel{animation:none}}
 </style>
@@ -437,10 +435,7 @@ html,body{margin:0;background:#FFFFFF}
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/planes</b></div>
-        <div class="lzc-pant">
-          <div class="lzc-menu"><strong>luzhero</strong><span>Inicio</span><span>Cotizaciones</span><span>Mis viajes</span><span class="on">Planes</span><span>Inbox</span><span>Campaña</span></div>
-          <div class="lzc-cont"><h4>Planes</h4><div class="lzc-esq">Captura de la pantalla Planes</div></div>
-        </div></div>
+        <div class="lzc-pant"><img src="capturas/planes.webp" alt="" width="1600" height="790" loading="lazy" decoding="async"></div></div>
       <div class="lzc-tel"><div class="lzc-wa">
         <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Viajes Ejemplo</b><small>Cuenta de empresa</small></div></div>
         <div class="lzc-wa-chat">
@@ -466,10 +461,7 @@ Salidas: 12 dic y 9 ene<time>9:42</time></div>
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/inbox</b></div>
-        <div class="lzc-pant">
-          <div class="lzc-menu"><strong>luzhero</strong><span>Inicio</span><span>Cotizaciones</span><span>Mis viajes</span><span>Planes</span><span class="on">Inbox</span><span>Campaña</span></div>
-          <div class="lzc-cont"><h4>Inbox</h4><div class="lzc-esq">Captura del Inbox con el tablero (Nuevos · Hablando · Cotizada…)</div></div>
-        </div></div>
+        <div class="lzc-pant"><img src="capturas/inbox.webp" alt="" width="1600" height="790" loading="lazy" decoding="async"></div></div>
       <div class="lzc-tel"><div class="lzc-wa">
         <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Viajes Ejemplo</b><small>Cuenta de empresa</small></div></div>
         <div class="lzc-wa-chat">
@@ -491,10 +483,7 @@ Salidas: 12 dic y 9 ene<time>9:42</time></div>
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/cotizaciones</b></div>
-        <div class="lzc-pant">
-          <div class="lzc-menu"><strong>luzhero</strong><span>Inicio</span><span class="on">Cotizaciones</span><span>Mis viajes</span><span>Planes</span><span>Inbox</span><span>Campaña</span></div>
-          <div class="lzc-cont"><h4>Nueva cotización</h4><div class="lzc-esq">Captura: texto del GDS → propuesta visual</div></div>
-        </div></div>
+        <div class="lzc-pant"><img src="capturas/cotizaciones.webp" alt="" width="1600" height="790" loading="lazy" decoding="async"></div></div>
       <div class="lzc-tel"><div class="lzc-wa">
         <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Asistente Luzhero</b><small>Cuenta de empresa</small></div></div>
         <div class="lzc-wa-chat">
@@ -518,10 +507,7 @@ Salidas: 12 dic y 9 ene<time>9:42</time></div>
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/campana</b></div>
-        <div class="lzc-pant">
-          <div class="lzc-menu"><strong>luzhero</strong><span>Inicio</span><span>Cotizaciones</span><span>Mis viajes</span><span>Planes</span><span>Inbox</span><span class="on">Campaña</span></div>
-          <div class="lzc-cont"><h4>Campañas</h4><div class="lzc-esq">Captura de Mis viajes o Campañas</div></div>
-        </div></div>
+        <div class="lzc-pant"><img src="capturas/campanas.webp" alt="" width="1600" height="790" loading="lazy" decoding="async"></div></div>
       <div class="lzc-tel"><div class="lzc-wa">
         <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Asistente Luzhero</b><small>Cuenta de empresa</small></div></div>
         <div class="lzc-wa-chat">
@@ -546,10 +532,7 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/inicio</b></div>
-        <div class="lzc-pant">
-          <div class="lzc-menu"><strong>luzhero</strong><span class="on">Inicio</span><span>Cotizaciones</span><span>Mis viajes</span><span>Planes</span><span>Inbox</span><span>Campaña</span></div>
-          <div class="lzc-cont"><h4>Inicio</h4><div class="lzc-esq">Captura del panel de Inicio</div></div>
-        </div></div>
+        <div class="lzc-pant"><img src="capturas/inicio.webp" alt="" width="1600" height="790" loading="lazy" decoding="async"></div></div>
       <div class="lzc-tel"><div class="lzc-wa">
         <div class="lzc-wa-cab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg><div><b>Asistente Luzhero</b><small>Cuenta de empresa</small></div></div>
         <div class="lzc-wa-chat">
