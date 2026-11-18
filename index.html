@@ -598,6 +598,105 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 })();
 </script>
 <!-- ===== FIN SECCIÓN · EL CICLO COMERCIAL ===== -->
+<!-- ===== SECCIÓN · DUEÑO Y ASESOR ===== -->
+<style>
+.lzr{--tinta:#12172B;--suave:#4A5163;--lav:#4F5FD0;--lav-cl:#B4C3FF;--ambar:#F2A23A;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--tinta);padding:112px 24px 104px}
+.lzr *{box-sizing:border-box;margin:0;padding:0}
+.lzr-cab{max-width:720px;margin:0 auto;text-align:center}
+.lzr-eti{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);margin-bottom:18px}
+.lzr-h2{font-weight:600;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.lzr-h2 em{display:block;font-style:italic;font-weight:300;color:var(--lav)}
+.lzr-sub{margin-top:16px;font-size:clamp(16px,1.4vw,19px);line-height:1.5;color:var(--suave)}
+.lzr-grid{max-width:1120px;margin:56px auto 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.lzr-card{border-radius:28px;padding:40px 36px;display:flex;flex-direction:column;gap:28px;position:relative;overflow:hidden}
+.lzr-card h3{font-size:clamp(24px,2.3vw,30px);font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.lzr-quien{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.lzr-quien i{width:8px;height:8px;border-radius:50%;display:block}
+.lzr-lista{list-style:none;display:flex;flex-direction:column;gap:14px}
+.lzr-lista li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;font-size:16px;line-height:1.5}
+.lzr-lista svg{width:22px;height:22px;margin-top:1px;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Dueño: tarjeta oscura */
+.lzr-dueno{color:#fff;background:radial-gradient(70% 60% at 85% 100%,rgba(64,104,255,.35) 0%,rgba(64,104,255,0) 70%),
+  linear-gradient(160deg,#171E3C 0%,#0B0F22 60%,#070A16 100%)}
+.lzr-dueno .lzr-quien{color:var(--lav-cl)}
+.lzr-dueno .lzr-quien i{background:var(--lav-cl)}
+.lzr-dueno .lzr-lista li{color:rgba(255,255,255,.82)}
+.lzr-dueno .lzr-lista svg{stroke:var(--lav-cl)}
+.lzr-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:auto}
+.lzr-kpi{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px 14px 12px}
+.lzr-kpi small{display:block;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.04em}
+.lzr-kpi b{display:block;font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.02em;margin-top:6px}
+.lzr-kpi.alerta b{color:#FFC27A}
+.lzr-nota{font-size:11px;color:rgba(255,255,255,.45);margin-top:-18px}
+
+/* Asesor: tarjeta clara con toque ámbar */
+.lzr-asesor{background:radial-gradient(70% 60% at 90% 100%,rgba(242,162,58,.22) 0%,rgba(242,162,58,0) 70%),#FFF8EE;border:1px solid #F3E2C8}
+.lzr-asesor .lzr-quien{color:#9A5B07}
+.lzr-asesor .lzr-quien i{background:var(--ambar)}
+.lzr-asesor .lzr-lista li{color:var(--suave)}
+.lzr-asesor .lzr-lista svg{stroke:#C97A12}
+.lzr-chat{margin-top:auto;background:#0B141A;border-radius:20px;padding:16px 14px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;line-height:1.4;color:#E9EDEF}
+.lzr-m{max-width:85%;border-radius:10px;padding:8px 10px;background:#202C33;align-self:flex-start}
+.lzr-m.yo{background:#005C4B;align-self:flex-end}
+.lzr-bts{display:flex;gap:6px;align-self:flex-start}
+.lzr-bts span{background:#202C33;color:#53BDEB;border-radius:8px;padding:7px 12px;font-weight:600}
+
+@media (max-width:900px){
+  .lzr{padding:80px 16px 72px}
+  .lzr-grid{grid-template-columns:minmax(0,1fr);gap:16px;margin-top:40px}
+  .lzr-card{padding:32px 24px;border-radius:24px}
+}
+@media (max-width:420px){.lzr-kpis{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.lzr-kpi:first-child{grid-column:1 / -1}}
+</style>
+
+<section class="lzr" id="dueno-asesor" aria-labelledby="lzr-titulo">
+  <div class="lzr-cab">
+    <p class="lzr-eti">Para quién</p>
+    <h2 class="lzr-h2" id="lzr-titulo">Gana el dueño. <em>Y también tu equipo.</em></h2>
+    <p class="lzr-sub">Un CRM solo funciona si el equipo lo usa. Por eso Luzhero no le pide trabajo extra a nadie.</p>
+  </div>
+
+  <div class="lzr-grid">
+    <article class="lzr-card lzr-dueno">
+      <div>
+        <p class="lzr-quien"><i aria-hidden="true"></i>Para el dueño</p>
+        <h3>Por fin ves tu negocio.</h3>
+      </div>
+      <ul class="lzr-lista">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Cuántas cotizaciones entran, cuántas se venden y cuáles se están enfriando.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>El rendimiento de cada asesor, sin pedir reportes a nadie.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>El resumen del día en tu WhatsApp, cada mañana a las 8:00.</span></li>
+      </ul>
+      <div class="lzr-kpis" aria-hidden="true">
+        <div class="lzr-kpi"><small>Ventas del mes</small><b>48.250 €</b></div>
+        <div class="lzr-kpi"><small>Conversión</small><b>33 %</b></div>
+        <div class="lzr-kpi alerta"><small>Abiertas +48 h</small><b>6</b></div>
+      </div>
+      <p class="lzr-nota" aria-hidden="true">Datos de ejemplo</p>
+    </article>
+
+    <article class="lzr-card lzr-asesor">
+      <div>
+        <p class="lzr-quien"><i aria-hidden="true"></i>Para el asesor</p>
+        <h3>Cero trabajo extra.</h3>
+      </div>
+      <ul class="lzr-lista">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Cotizar ya es registrar: no vuelve a meter los datos en ningún otro sitio.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Propuestas visuales en 3-5 minutos a partir del texto del GDS.</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>Marca ventas y consulta sus viajes desde WhatsApp, en dos toques.</span></li>
+      </ul>
+      <div class="lzr-chat" aria-hidden="true">
+        <div class="lzr-m">¿Cómo quedó la cotización de María G.?</div>
+        <div class="lzr-bts"><span>🟢 Venta</span><span>🔴 Cancelada</span></div>
+        <div class="lzr-m yo">🟢 Venta</div>
+        <div class="lzr-m">✅ Listo, quedó registrada como venta.</div>
+      </div>
+    </article>
+  </div>
+</section>
+<!-- ===== FIN SECCIÓN · DUEÑO Y ASESOR ===== -->
 <footer class="lzh-pie">
   <span>© 2026 Luzhero</span>
   <nav aria-label="Legal">
