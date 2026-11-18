@@ -887,6 +887,103 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 })();
 </script>
 <!-- ===== FIN SECCIÓN · PRECIO ===== -->
+<!-- ===== SECCIÓN · PREGUNTAS FRECUENTES ===== -->
+<style>
+.lzf{--tinta:#12172B;--suave:#4A5163;--turq:#00868B;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--tinta);padding:40px 24px 112px}
+.lzf *{box-sizing:border-box;margin:0;padding:0}
+.lzf-in{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:56px;align-items:start}
+.lzf-eti{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);margin-bottom:18px}
+.lzf-h2{font-weight:600;font-size:clamp(30px,3.2vw,44px);line-height:1.1;letter-spacing:-.03em}
+.lzf-h2 em{display:block;font-style:italic;font-weight:300;color:var(--turq)}
+.lzf-sub{margin-top:16px;font-size:16px;line-height:1.55;color:var(--suave)}
+.lzf-sub a{color:var(--turq);font-weight:600}
+.lzf-lista{display:flex;flex-direction:column;border-top:1px solid #E3E6EE}
+.lzf-lista details{border-bottom:1px solid #E3E6EE}
+.lzf-lista summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 4px;
+  font-size:clamp(16px,1.4vw,18px);font-weight:600;letter-spacing:-.01em}
+.lzf-lista summary::-webkit-details-marker{display:none}
+.lzf-lista summary:focus-visible{outline:2px solid var(--turq);outline-offset:2px;border-radius:6px}
+.lzf-mas{flex:0 0 32px;height:32px;border-radius:50%;background:#F1F3F8;position:relative;transition:background .2s,transform .25s}
+.lzf-mas::before,.lzf-mas::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;margin:-1px 0 0 -6px;background:var(--tinta);border-radius:2px}
+.lzf-mas::after{transform:rotate(90deg);transition:transform .25s}
+.lzf-lista details[open] .lzf-mas{background:#E1F8F8}
+.lzf-lista details[open] .lzf-mas::after{transform:rotate(0deg)}
+.lzf-lista p{padding:0 56px 24px 4px;font-size:15.5px;font-weight:400;line-height:1.6;color:var(--suave)}
+@media (max-width:900px){
+  .lzf{padding:24px 16px 80px}
+  .lzf-in{grid-template-columns:minmax(0,1fr);gap:32px}
+  .lzf-lista p{padding-right:4px}
+}
+@media (prefers-reduced-motion:reduce){.lzf-mas,.lzf-mas::after{transition:none}}
+</style>
+
+<section class="lzf" id="preguntas" aria-labelledby="lzf-titulo">
+  <div class="lzf-in">
+    <div>
+      <p class="lzf-eti">Preguntas frecuentes</p>
+      <h2 class="lzf-h2" id="lzf-titulo">Lo que todo dueño <em>pregunta primero.</em></h2>
+      <p class="lzf-sub">¿Tienes otra duda? Resolvámosla en una <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ33NmJr6fJS7nfF-NaHe_BFkoTQmh5Ucw0Ue14Vuz9qSmVHmmyf81BfqFR5mqKZtoXyrREOaQ1-">demo de 15 minutos</a>.</p>
+    </div>
+    <div class="lzf-lista">
+      <details>
+        <summary>¿Mis asesores lo van a usar?<span class="lzf-mas" aria-hidden="true"></span></summary>
+        <p>Sí, porque no les pedimos trabajo extra. Siguen trabajando en WhatsApp: cotizar ya es registrar, y marcan cada venta o cancelación en dos toques desde el asistente. No tienen que volver a meter datos en ningún CRM.</p>
+      </details>
+      <details>
+        <summary>¿Se conecta con Amadeus o Sabre?<span class="lzf-mas" aria-hidden="true"></span></summary>
+        <p>No hay conexión directa con el GDS. Tu asesor copia el texto de la reserva de Amadeus o Sabre, lo pega en Luzhero y en 3-5 minutos tiene una propuesta visual con la marca de tu agencia.</p>
+      </details>
+      <details>
+        <summary>¿Puedo reservar o emitir desde Luzhero?<span class="lzf-mas" aria-hidden="true"></span></summary>
+        <p>No. Luzhero organiza tu proceso comercial: captar, atender, cotizar, cerrar y medir. Las reservas y emisiones se siguen haciendo en tu GDS o con tus proveedores, como hasta ahora.</p>
+      </details>
+      <details>
+        <summary>¿Hay permanencia o costes ocultos?<span class="lzf-mas" aria-hidden="true"></span></summary>
+        <p>No hay permanencia: pagas mes a mes por cada persona de tu equipo y cancelas cuando quieras. Lo único que va aparte son los envíos de las campañas por WhatsApp, que Meta cobra directamente al portafolio empresarial de tu agencia.</p>
+      </details>
+      <details>
+        <summary>¿Para qué tamaño de agencia está pensado?<span class="lzf-mas" aria-hidden="true"></span></summary>
+        <p>Para agencias con un equipo comercial que vende por WhatsApp, normalmente de 9 a 15 personas, y que invierten en anuncios de Meta. Si tu equipo es más pequeño o más grande, lo vemos juntos en la demo.</p>
+      </details>
+      <details>
+        <summary>¿Cómo funciona la prueba gratis?<span class="lzf-mas" aria-hidden="true"></span></summary>
+        <p>Después de la demo tienes 1 mes gratis con todas las funciones. En Colombia, además, te regalamos otro mes si tu equipo cumple la meta de cotizaciones. Al terminar, decides si sigues, sin compromiso.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<!-- ===== FIN SECCIÓN · PREGUNTAS FRECUENTES ===== -->
+<!-- ===== SECCIÓN · CTA FINAL ===== -->
+<style>
+.lzk{--tinta:#12172B;font-family:'Plus Jakarta Sans',system-ui,sans-serif;padding:0 12px}
+.lzk *{box-sizing:border-box;margin:0;padding:0}
+.lzk-box{border-radius:40px;overflow:hidden;color:var(--tinta);text-align:center;padding:clamp(96px,11vw,140px) 24px;
+  background:radial-gradient(70% 80% at 50% 0%,#F9CD82 0%,#F2A23A 50%,#E3861F 100%)}
+.lzk-h2{max-width:900px;margin:0 auto;font-weight:600;font-size:clamp(34px,5vw,64px);line-height:1.08;letter-spacing:-.035em;text-wrap:balance}
+.lzk-h2 em{display:block;font-style:italic;font-weight:300}
+.lzk-sub{max-width:560px;margin:22px auto 0;font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:#3A2A12}
+.lzk-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:36px}
+.lzk-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;font-weight:700;font-size:16px;
+  text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.lzk-btn:hover{transform:translateY(-1px)}
+.lzk-btn:focus-visible{outline:2px solid var(--tinta);outline-offset:3px}
+.lzk-osc{background:var(--tinta);color:#fff}
+.lzk-osc:hover{box-shadow:0 12px 26px -10px rgba(18,23,43,.6)}
+.lzk-cla{background:rgba(255,255,255,.45);color:var(--tinta);border:2px solid rgba(18,23,43,.2)}
+.lzk-cla:hover{background:rgba(255,255,255,.7)}
+@media (max-width:640px){.lzk{padding:0 8px}.lzk-box{border-radius:28px}.lzk-ctas{flex-direction:column;align-items:center}.lzk-btn{font-size:15px;padding:0 20px;white-space:nowrap}}
+@media (prefers-reduced-motion:reduce){.lzk-btn{transition:none}}
+</style>
+
+<section class="lzk" aria-labelledby="lzk-titulo"><div class="lzk-box">
+  <h2 class="lzk-h2" id="lzk-titulo">Mañana a las 8:00, <em>tu agencia en tu WhatsApp.</em></h2>
+  <p class="lzk-sub">Agenda una demo de 15 minutos y te enseñamos Luzhero con un caso como el tuyo.</p>
+  <div class="lzk-ctas">
+    <a class="lzk-btn lzk-osc" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ33NmJr6fJS7nfF-NaHe_BFkoTQmh5Ucw0Ue14Vuz9qSmVHmmyf81BfqFR5mqKZtoXyrREOaQ1-">Agenda una demo de 15 min</a>
+    <a class="lzk-btn lzk-cla" href="https://luzhero.com/demo">Prueba gratis el formateador de PNR</a>
+  </div>
+</div></section>
+<!-- ===== FIN SECCIÓN · CTA FINAL ===== -->
 <footer class="lzh-pie">
   <span>© 2026 Luzhero</span>
   <nav aria-label="Legal">
