@@ -756,6 +756,101 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 })();
 </script>
 <!-- ===== FIN SECCIÓN · MANIFIESTO ===== -->
+<!-- ===== SECCIÓN · PRECIO ===== -->
+<style>
+.lzq{--tinta:#12172B;--suave:#4A5163;--turq:#00868B;--turq-cl:#02C5CA;--ambar:#F2A23A;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--tinta);padding:112px 24px 104px}
+.lzq *{box-sizing:border-box;margin:0;padding:0}
+.lzq-in{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px;align-items:center}
+.lzq-eti{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);margin-bottom:18px}
+.lzq-h2{font-weight:600;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.lzq-h2 em{display:block;font-style:italic;font-weight:300;color:var(--turq)}
+.lzq-sub{margin-top:16px;font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:var(--suave);max-width:460px}
+.lzq-garantias{list-style:none;margin-top:32px;display:flex;flex-direction:column;gap:14px}
+.lzq-garantias li{display:flex;align-items:center;gap:12px;font-size:16px;font-weight:600}
+.lzq-garantias i{flex:0 0 32px;height:32px;border-radius:10px;background:#E1F8F8;display:flex;align-items:center;justify-content:center}
+.lzq-garantias svg{width:18px;height:18px;fill:none;stroke:var(--turq);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Tarjeta de precio */
+.lzq-card{border-radius:28px;padding:40px 36px 36px;color:#fff;position:relative;overflow:hidden;
+  background:radial-gradient(70% 55% at 85% 0%,rgba(2,197,202,.22) 0%,rgba(2,197,202,0) 70%),
+             linear-gradient(160deg,#171E3C 0%,#0B0F22 60%,#070A16 100%);box-shadow:0 40px 80px -40px rgba(11,15,34,.6)}
+.lzq-plan{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--turq-cl)}
+.lzq-precio{display:flex;align-items:baseline;gap:10px;margin-top:14px}
+.lzq-precio b{font-size:clamp(52px,6vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1}
+.lzq-precio span{font-size:16px;color:rgba(255,255,255,.7);line-height:1.3}
+.lzq-calc{margin-top:28px;padding:20px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.lzq-calc label{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;font-weight:600;color:rgba(255,255,255,.8)}
+.lzq-calc label output{font-size:15px;color:#fff}
+.lzq-calc input{width:100%;margin:16px 0 14px;accent-color:var(--turq-cl);height:24px;cursor:pointer}
+.lzq-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;color:rgba(255,255,255,.7)}
+.lzq-total b{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.02em}
+.lzq-inc{list-style:none;margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px}
+.lzq-inc li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;font-size:14px;line-height:1.45;color:rgba(255,255,255,.85)}
+.lzq-inc svg{width:18px;height:18px;margin-top:1px;fill:none;stroke:var(--turq-cl);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.lzq-cta{display:flex;align-items:center;justify-content:center;margin-top:32px;min-height:52px;border-radius:999px;background:var(--ambar);color:var(--tinta);
+  font-weight:700;font-size:16px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.lzq-cta:hover{transform:translateY(-1px);box-shadow:0 12px 28px -10px rgba(242,162,58,.7)}
+.lzq-cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.lzq-nota{margin-top:14px;text-align:center;font-size:13px;color:rgba(255,255,255,.55)}
+
+@media (max-width:900px){
+  .lzq{padding:80px 16px 72px}
+  .lzq-in{grid-template-columns:minmax(0,1fr);gap:40px}
+  .lzq-card{padding:32px 22px 28px;border-radius:24px}
+}
+@media (max-width:480px){.lzq-inc{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.lzq-cta{transition:none}}
+</style>
+
+<section class="lzq" id="precios" aria-labelledby="lzq-titulo">
+  <div class="lzq-in">
+    <div>
+      <p class="lzq-eti">Precio</p>
+      <h2 class="lzq-h2" id="lzq-titulo">Un solo precio. <em>Todo incluido.</em></h2>
+      <p class="lzq-sub">Pagas por cada persona de tu equipo que usa Luzhero. Sin planes que comparar ni funciones bloqueadas.</p>
+      <ul class="lzq-garantias">
+        <li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i>1 mes de prueba gratis</li>
+        <li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i>Sin permanencia: mes a mes</li>
+        <li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i>Cotizaciones ilimitadas</li>
+      </ul>
+    </div>
+
+    <div class="lzq-card">
+      <p class="lzq-plan">Luzhero · plan único</p>
+      <p class="lzq-precio"><b>30 USD</b><span>por usuario<br>al mes</span></p>
+
+      <div class="lzq-calc">
+        <label for="lzq-usuarios">Personas en tu equipo <output id="lzq-n" for="lzq-usuarios">10</output></label>
+        <input type="range" id="lzq-usuarios" min="1" max="30" value="10" aria-describedby="lzq-total">
+        <p class="lzq-total" id="lzq-total">Total al mes <b><span id="lzq-suma">300</span> USD</b></p>
+      </div>
+
+      <ul class="lzq-inc">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Propuestas digitales desde el GDS</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Asistente de WhatsApp</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Inbox y tablero de ventas</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Chatbot de entrada y planes</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Campañas por WhatsApp</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Panel y resumen de las 8:00</li>
+      </ul>
+
+      <a class="lzq-cta" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ33NmJr6fJS7nfF-NaHe_BFkoTQmh5Ucw0Ue14Vuz9qSmVHmmyf81BfqFR5mqKZtoXyrREOaQ1-">Agenda una demo de 15 min</a>
+      <p class="lzq-nota">Empieza con 1 mes gratis después de la demo.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Calculadora: personas × 30 USD */
+(function(){
+  var r = document.getElementById('lzq-usuarios'); if (!r) return;
+  var n = document.getElementById('lzq-n'), s = document.getElementById('lzq-suma');
+  function act(){ n.textContent = r.value; s.textContent = (r.value * 30).toLocaleString('es-ES'); }
+  r.addEventListener('input', act); act();
+})();
+</script>
+<!-- ===== FIN SECCIÓN · PRECIO ===== -->
 <footer class="lzh-pie">
   <span>© 2026 Luzhero</span>
   <nav aria-label="Legal">
