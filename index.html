@@ -776,6 +776,12 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
   background:radial-gradient(70% 55% at 85% 0%,rgba(2,197,202,.22) 0%,rgba(2,197,202,0) 70%),
              linear-gradient(160deg,#171E3C 0%,#0B0F22 60%,#070A16 100%);box-shadow:0 40px 80px -40px rgba(11,15,34,.6)}
 .lzq-plan{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--turq-cl)}
+.lzq-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.lzq-pais{display:flex;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:3px}
+.lzq-pais button{appearance:none;border:0;background:transparent;color:rgba(255,255,255,.7);font:600 13px/1 'Plus Jakarta Sans',system-ui,sans-serif;
+  padding:8px 14px;min-height:34px;border-radius:999px;cursor:pointer}
+.lzq-pais button[aria-checked="true"]{background:#fff;color:var(--tinta)}
+.lzq-pais button:focus-visible{outline:2px solid var(--turq-cl);outline-offset:2px}
 .lzq-precio{display:flex;align-items:baseline;gap:10px;margin-top:14px}
 .lzq-precio b{font-size:clamp(52px,6vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1}
 .lzq-precio span{font-size:16px;color:rgba(255,255,255,.7);line-height:1.3}
@@ -810,20 +816,26 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
       <h2 class="lzq-h2" id="lzq-titulo">Un solo precio. <em>Todo incluido.</em></h2>
       <p class="lzq-sub">Pagas por cada persona de tu equipo que usa Luzhero. Sin planes que comparar ni funciones bloqueadas.</p>
       <ul class="lzq-garantias">
-        <li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i>1 mes de prueba gratis</li>
+        <li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i><span id="lzq-prueba">1 mes de prueba gratis</span></li>
         <li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i>Sin permanencia: mes a mes</li>
         <li><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></i>Cotizaciones ilimitadas</li>
       </ul>
     </div>
 
     <div class="lzq-card">
-      <p class="lzq-plan">Luzhero · plan único</p>
-      <p class="lzq-precio"><b>30 USD</b><span>por usuario<br>al mes</span></p>
+      <div class="lzq-top">
+        <p class="lzq-plan">Luzhero · plan único</p>
+        <div class="lzq-pais" role="radiogroup" aria-label="País">
+          <button type="button" role="radio" aria-checked="true" data-pais="ES">España</button>
+          <button type="button" role="radio" aria-checked="false" data-pais="CO">Colombia</button>
+        </div>
+      </div>
+      <p class="lzq-precio"><b id="lzq-precio">30 €</b><span>por usuario<br>al mes</span></p>
 
       <div class="lzq-calc">
         <label for="lzq-usuarios">Personas en tu equipo <output id="lzq-n" for="lzq-usuarios">10</output></label>
         <input type="range" id="lzq-usuarios" min="1" max="30" value="10" aria-describedby="lzq-total">
-        <p class="lzq-total" id="lzq-total">Total al mes <b><span id="lzq-suma">300</span> USD</b></p>
+        <p class="lzq-total" id="lzq-total">Total al mes <b id="lzq-suma">300 €</b></p>
       </div>
 
       <ul class="lzq-inc">
@@ -836,18 +848,40 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
       </ul>
 
       <a class="lzq-cta" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ33NmJr6fJS7nfF-NaHe_BFkoTQmh5Ucw0Ue14Vuz9qSmVHmmyf81BfqFR5mqKZtoXyrREOaQ1-">Agenda una demo de 15 min</a>
-      <p class="lzq-nota">Empieza con 1 mes gratis después de la demo.</p>
+      <p class="lzq-nota" id="lzq-nota">Empieza con 1 mes gratis después de la demo.</p>
     </div>
   </div>
 </section>
 
 <script>
-/* Calculadora: personas × 30 USD */
+/* Precio fijo por país (detectado con Cloudflare) + calculadora de equipo */
 (function(){
   var r = document.getElementById('lzq-usuarios'); if (!r) return;
-  var n = document.getElementById('lzq-n'), s = document.getElementById('lzq-suma');
-  function act(){ n.textContent = r.value; s.textContent = (r.value * 30).toLocaleString('es-ES'); }
+  var PAISES = {
+    ES: {precio: 30, fmt: function(v){ return v.toLocaleString('es-ES') + ' €'; },
+         prueba: '1 mes de prueba gratis', nota: 'Empieza con 1 mes gratis después de la demo.'},
+    CO: {precio: 30, fmt: function(v){ return v.toLocaleString('es-CO') + ' USD'; },
+         prueba: '1 mes de prueba + 1 mes de beca', nota: 'Empieza con 1 mes gratis después de la demo, y otro más si tu equipo cumple la meta.'}
+  };
+  var pais = 'ES';
+  var n = document.getElementById('lzq-n'), s = document.getElementById('lzq-suma'), p = document.getElementById('lzq-precio');
+  var botones = Array.prototype.slice.call(document.querySelectorAll('.lzq-pais button'));
+  function act(){
+    var d = PAISES[pais];
+    n.textContent = r.value;
+    p.textContent = d.fmt(d.precio);
+    s.textContent = d.fmt(r.value * d.precio);
+    document.getElementById('lzq-prueba').textContent = d.prueba;
+    document.getElementById('lzq-nota').textContent = d.nota;
+    botones.forEach(function(b){ b.setAttribute('aria-checked', b.dataset.pais === pais ? 'true' : 'false'); });
+  }
+  botones.forEach(function(b){ b.addEventListener('click', function(){ pais = b.dataset.pais; act(); }); });
   r.addEventListener('input', act); act();
+  /* País del visitante según Cloudflare; si falla, se queda España */
+  fetch('/cdn-cgi/trace').then(function(res){ return res.text(); }).then(function(t){
+    var m = t.match(/^loc=([A-Z]{2})$/m);
+    if (m && m[1] === 'CO'){ pais = 'CO'; act(); }
+  }).catch(function(){});
 })();
 </script>
 <!-- ===== FIN SECCIÓN · PRECIO ===== -->
