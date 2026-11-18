@@ -784,6 +784,7 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 .lzq-pais button:focus-visible{outline:2px solid var(--turq-cl);outline-offset:2px}
 .lzq-precio{display:flex;align-items:baseline;gap:10px;margin-top:14px}
 .lzq-precio b{font-size:clamp(52px,6vw,72px);font-weight:700;letter-spacing:-.04em;line-height:1}
+.lzq-precio.lzq-largo b{font-size:clamp(38px,4.6vw,56px)}
 .lzq-precio span{font-size:16px;color:rgba(255,255,255,.7);line-height:1.3}
 .lzq-calc{margin-top:28px;padding:20px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
 .lzq-calc label{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;font-weight:600;color:rgba(255,255,255,.8)}
@@ -860,7 +861,7 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
   var PAISES = {
     ES: {precio: 30, fmt: function(v){ return v.toLocaleString('es-ES') + ' €'; },
          prueba: '1 mes de prueba gratis', nota: 'Empieza con 1 mes gratis después de la demo.'},
-    CO: {precio: 30, fmt: function(v){ return v.toLocaleString('es-CO') + ' USD'; },
+    CO: {precio: 99900, fmt: function(v){ return v.toLocaleString('es-CO') + ' COP'; },
          prueba: '1 mes de prueba + 1 mes de beca', nota: 'Empieza con 1 mes gratis después de la demo, y otro más si tu equipo cumple la meta.'}
   };
   var pais = 'ES';
@@ -868,6 +869,7 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
   var botones = Array.prototype.slice.call(document.querySelectorAll('.lzq-pais button'));
   function act(){
     var d = PAISES[pais];
+    p.parentNode.classList.toggle('lzq-largo', pais === 'CO');
     n.textContent = r.value;
     p.textContent = d.fmt(d.precio);
     s.textContent = d.fmt(r.value * d.precio);
