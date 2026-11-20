@@ -202,6 +202,16 @@ html,body{margin:0;background:#FFFFFF}
 @keyframes lzhNotif{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:none}}
 @media (max-width:520px){.lzh-esc-in{transform:scale(.675)}}
 @media (prefers-reduced-motion:reduce){.lzh-esc *{animation:none !important}}
+
+/* La mano invita a bajar mientras la página está arriba del todo */
+.lzh-hand{transform-origin:50% 100%}
+.lzh-arriba .lzh-hand{animation:lzhInvita 3.2s ease-in-out 1.2s infinite}
+@keyframes lzhInvita{0%,62%,100%{transform:none}
+  70%{transform:translateY(-10px) rotate(-1.8deg)}
+  78%{transform:translateY(-4px) rotate(1.4deg)}
+  86%{transform:translateY(-6px) rotate(-.8deg)}
+  94%{transform:translateY(0) rotate(.3deg)}}
+@media (prefers-reduced-motion:reduce){.lzh-arriba .lzh-hand{animation:none}}
 </style>
 
 <section class="lzh lzh--oscuro" aria-label="Luzhero"><div class="lzh-box">
@@ -308,6 +318,14 @@ html,body{margin:0;background:#FFFFFF}
   }
   document.addEventListener('visibilitychange', function(){ if (document.hidden) clearTimeout(t); else { clearTimeout(t); ir(i); } });
   ir(0);
+})();
+</script>
+<script>
+/* Activa el movimiento de la mano solo con la página arriba del todo */
+(function(){
+  var sec = document.querySelector('.lzh--oscuro'); if (!sec) return;
+  function upd(){ sec.classList.toggle('lzh-arriba', (window.scrollY || document.documentElement.scrollTop) < 8); }
+  window.addEventListener('scroll', upd, {passive:true}); upd();
 })();
 </script>
 <!-- ===== SECCIÓN · EL PROBLEMA ===== -->
