@@ -152,6 +152,56 @@ html,body{margin:0;background:#FFFFFF}
 }
 @media (max-width:520px){.lzh-rot{font-size:19px}}
 @media (prefers-reduced-motion:reduce){.lzh-btn{transition:none}.lzh-rot-in{animation:none}}
+
+/* Secuencia animada de la pantalla del móvil */
+.lzh-esc{position:absolute;inset:0;opacity:0;visibility:hidden}
+.lzh-esc.on{opacity:1;visibility:visible}
+.lzh-esc.entra{z-index:2;animation:lzhFade .45s ease both}
+@keyframes lzhFade{from{opacity:0}to{opacity:1}}
+.lzh-esc-res{background:var(--gris)}
+.lzh-esc-in{position:absolute;top:0;left:0;width:336px;height:740px;transform-origin:0 0;transform:scale(.94);overflow:hidden}
+.lzh-esc-in > img{position:absolute;top:28px;left:0;width:336px;height:auto}
+.lzh-sb{position:absolute;top:0;left:0;right:0;height:28px;display:flex;justify-content:space-between;align-items:flex-end;
+  padding:0 34px 2px;font-weight:700;font-size:13px}
+.lzh-wa{background:#0C1013}.lzh-wa .lzh-sb{color:#E9EDEF}
+.lzh-tap{position:absolute;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;opacity:0;z-index:3;
+  background:rgba(255,255,255,.35);border:2px solid rgba(255,255,255,.9);box-shadow:0 0 0 0 rgba(255,255,255,.5)}
+.lzh-esc.on .lzh-tap{animation:lzhTap .7s ease-out var(--d) both}
+@keyframes lzhTap{0%{opacity:0;transform:scale(1.5)}35%{opacity:1;transform:scale(.85)}60%{opacity:1;transform:scale(1);box-shadow:0 0 0 10px rgba(255,255,255,0)}100%{opacity:0;transform:scale(1)}}
+/* Paso en el portátil */
+.lzh-gds{background:#0B0F22;color:#FFFFFF;padding:70px 22px 0;display:flex;flex-direction:column;gap:16px}
+.lzh-gds .lzh-sb{color:#FFFFFF}
+.lzh-gds-chip{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:rgba(2,197,202,.14);color:#02C5CA;
+  border:1px solid rgba(2,197,202,.4);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700}
+.lzh-gds-chip svg{width:16px;height:16px}
+.lzh-gds h3{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.lzh-gds-txt{background:#05070F;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 10px;margin:0;
+  font:600 12px/1.6 ui-monospace,'SFMono-Regular',Consolas,monospace;color:#9BE7E9;white-space:pre;display:flex;flex-direction:column;gap:6px}
+.lzh-gds-txt span{opacity:0}
+.lzh-esc.on .lzh-gds-txt span{animation:lzhLinea .35s ease both}
+.lzh-esc.on .lzh-gds-txt span:nth-child(1){animation-delay:.5s}
+.lzh-esc.on .lzh-gds-txt span:nth-child(2){animation-delay:1s}
+.lzh-esc.on .lzh-gds-txt span:nth-child(3){animation-delay:1.5s}
+@keyframes lzhLinea{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.lzh-gds-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+.lzh-gds-bar i{display:block;height:100%;width:0;background:var(--ambar);border-radius:inherit}
+.lzh-esc.on .lzh-gds-bar i{animation:lzhBarra 1.3s cubic-bezier(.4,0,.2,1) 2s both}
+@keyframes lzhBarra{to{width:100%}}
+.lzh-gds-ok{font-size:15px;font-weight:700;opacity:0;display:flex;align-items:center;gap:8px}
+.lzh-gds-ok b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ambar);color:var(--tinta);font-size:13px}
+.lzh-esc.on .lzh-gds-ok{animation:lzhLinea .4s ease 3.3s both}
+/* Propuesta desplazándose */
+.lzh-prop{background:#FFFFFF}.lzh-prop .lzh-sb{color:var(--tinta)}
+.lzh-prop-vp{position:absolute;top:28px;left:0;right:0;bottom:0;overflow:hidden}
+.lzh-tira{display:block;width:336px;height:auto}
+.lzh-esc.on .lzh-tira{animation:lzhScroll 6s cubic-bezier(.45,0,.35,1) .9s both}
+@keyframes lzhScroll{0%{transform:translateY(0)}45%{transform:translateY(-470px)}55%{transform:translateY(-470px)}100%{transform:translateY(-946px)}}
+/* Resumen del dueño */
+.lzh-esc-res.on .lzh-notif{animation:lzhNotif .5s cubic-bezier(.2,.8,.2,1) .3s both}
+.lzh-esc-res.on .lzh-card{animation:lzhLinea .5s ease .9s both}
+@keyframes lzhNotif{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:none}}
+@media (max-width:520px){.lzh-esc-in{transform:scale(.675)}}
+@media (prefers-reduced-motion:reduce){.lzh-esc *{animation:none !important}}
 </style>
 
 <section class="lzh lzh--oscuro" aria-label="Luzhero"><div class="lzh-box">
@@ -191,7 +241,38 @@ html,body{margin:0;background:#FFFFFF}
 
   <div class="lzh-phone-wrap" aria-hidden="true">
     <div class="lzh-hand">
-      <div class="lzh-screen"><div class="lzh-screen-in">
+      <div class="lzh-screen">
+      <!-- Secuencia animada: asesor cotiza por WhatsApp → GDS en el portátil → propuesta → resumen del dueño -->
+      <div class="lzh-esc"><div class="lzh-esc-in lzh-wa">
+        <div class="lzh-sb"><span>17:02</span><span>100%</span></div>
+        <img src="hero/1-menu.webp" alt="" width="720" height="1450" decoding="async">
+        <i class="lzh-tap" style="left:110px;top:391px;--d:1.1s"></i>
+      </div></div>
+      <div class="lzh-esc"><div class="lzh-esc-in lzh-wa">
+        <div class="lzh-sb"><span>17:02</span><span>100%</span></div>
+        <img src="hero/2-tipo.webp" alt="" width="720" height="1450" decoding="async">
+        <i class="lzh-tap" style="left:138px;top:547px;--d:1.5s"></i>
+      </div></div>
+      <div class="lzh-esc"><div class="lzh-esc-in lzh-wa">
+        <div class="lzh-sb"><span>17:03</span><span>100%</span></div>
+        <img src="hero/3-enlace.webp" alt="" width="720" height="1450" decoding="async">
+        <i class="lzh-tap" style="left:150px;top:582px;--d:1.6s"></i>
+      </div></div>
+      <div class="lzh-esc"><div class="lzh-esc-in lzh-gds">
+        <div class="lzh-sb"><span>17:04</span><span>100%</span></div>
+        <p class="lzh-gds-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9H4z M2 17h20v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z" fill="currentColor"/></svg>En el portátil</p>
+        <h3>Pegas el texto del GDS</h3>
+        <pre class="lzh-gds-txt"><span> 1 IB6801 Y 10DEC MADNRT HK2
+     1155 0930+1</span><span> 2 IB6800 Y 18DEC NRTMAD HK2
+     1120 1825</span><span> HTL KEIO PLAZA TOKYO 2ADT</span></pre>
+        <div class="lzh-gds-bar"><i></i></div>
+        <p class="lzh-gds-ok"><b>✓</b> Propuesta lista en 3-5 minutos</p>
+      </div></div>
+      <div class="lzh-esc"><div class="lzh-esc-in lzh-prop">
+        <div class="lzh-sb"><span>17:08</span><span>100%</span></div>
+        <div class="lzh-prop-vp"><img class="lzh-tira" src="hero/4-propuesta.webp" alt="" width="720" height="3553" decoding="async"></div>
+      </div></div>
+      <div class="lzh-esc lzh-esc-res on"><div class="lzh-screen-in">
         <div class="lzh-status"><span>8:00</span><span>100%</span></div>
         <div class="lzh-notif">
           <svg class="lzh-av" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" fill="#12172B"/><g transform="translate(-4.5 1.5)"><path d="M26 13 V39 Q26 48 35 48" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><circle cx="45.5" cy="45" r="6" fill="#F2A23A"/></g></svg>
@@ -206,10 +287,29 @@ html,body{margin:0;background:#FFFFFF}
           <p class="lzh-demo">Datos de ejemplo</p>
         </div>
       </div></div>
+      </div>
       <img src="mano.webp" alt="" width="1024" height="1296" loading="eager" decoding="async">
     </div>
   </div>
 </div></section>
+
+<script>
+/* Secuencia de la pantalla del móvil: cada escena dura lo indicado (ms) y entra con un fundido */
+(function(){
+  var esc = document.querySelectorAll('.lzh-screen .lzh-esc');
+  if (!esc.length || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  var dur = [2900, 2800, 2900, 4300, 7200, 4800], i = esc.length - 1, t;
+  function ir(n){
+    var prev = esc[i]; i = n;
+    var el = esc[i]; el.classList.remove('on'); void el.offsetWidth;
+    el.classList.add('on', 'entra');
+    setTimeout(function(){ el.classList.remove('entra'); if (prev !== el) prev.classList.remove('on'); }, 450);
+    t = setTimeout(function(){ ir((i + 1) % esc.length); }, dur[i]);
+  }
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) clearTimeout(t); else { clearTimeout(t); ir(i); } });
+  ir(0);
+})();
+</script>
 <!-- ===== SECCIÓN · EL PROBLEMA ===== -->
 <style>
 .lzp{--tinta:#12172B;--suave:#4A5163;--lav:#00868B;--ambar:#F2A23A;--alerta:#B4530A;
