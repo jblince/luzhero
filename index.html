@@ -876,6 +876,152 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 })();
 </script>
 <!-- ===== FIN SECCIÓN · MANIFIESTO ===== -->
+<!-- ===== SECCIÓN · ANUNCIOS Y VENTAS EN UN SOLO LUGAR ===== -->
+<style>
+.lza{--tinta:#12172B;--suave:#4A5163;--turq:#00868B;--turq-cl:#02C5CA;--ambar:#F2A23A;--linea:#E6E8F0;
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--tinta);padding:112px 24px 104px}
+.lza *{box-sizing:border-box;margin:0;padding:0}
+.lza-cab{max-width:760px;margin:0 auto;text-align:center}
+.lza-eti{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--turq);background:rgba(2,197,202,.1);border:1px solid rgba(2,197,202,.3);border-radius:999px;padding:6px 14px;margin-bottom:20px}
+.lza-eti i{width:7px;height:7px;border-radius:50%;background:var(--ambar);display:block}
+.lza-h2{font-weight:600;font-size:clamp(30px,3.6vw,48px);line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
+.lza-h2 em{display:block;font-style:italic;font-weight:300;color:var(--turq)}
+.lza-sub{margin-top:16px;font-size:clamp(16px,1.4vw,19px);line-height:1.5;color:var(--suave);text-wrap:pretty}
+
+/* Las tres fuentes que se juntan */
+.lza-une{display:flex;align-items:center;justify-content:center;gap:10px;margin:40px auto 0;flex-wrap:wrap}
+.lza-une span{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--linea);border-radius:999px;
+  padding:8px 14px;font-size:14px;font-weight:600;box-shadow:0 6px 18px -12px rgba(18,23,43,.3)}
+.lza-une span i{width:8px;height:8px;border-radius:50%;display:block}
+.lza-une b{color:#B7BCCB;font-weight:600}
+.lza-une .lza-final{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+
+.lza-grid{max-width:1120px;margin:40px auto 0;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:40px;align-items:center}
+
+/* Panel con la tabla de anuncios (datos de ejemplo) */
+.lza-panel{background:#fff;border:1px solid var(--linea);border-radius:28px;padding:28px;
+  box-shadow:0 30px 60px -36px rgba(18,23,43,.35)}
+.lza-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.lza-kpi{background:#F6F7FA;border-radius:14px;padding:12px 14px}
+.lza-kpi small{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--suave)}
+.lza-kpi b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.lza-kpi.dest{background:var(--tinta);color:#fff}
+.lza-kpi.dest small{color:var(--turq-cl)}
+.lza-tabla{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.lza-tabla th{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--suave);text-align:right;padding:0 8px 10px;white-space:nowrap}
+.lza-tabla th:first-child,.lza-tabla td:first-child{text-align:left;padding-left:0}
+.lza-tabla td{padding:13px 8px;border-top:1px solid #EEF0F4;text-align:right;white-space:nowrap}
+.lza-tabla td:first-child{font-weight:600;white-space:normal}
+.lza-tabla td small{display:block;font-size:12px;font-weight:500;color:var(--suave)}
+.lza-ret{display:inline-flex;align-items:center;gap:8px;font-weight:800}
+.lza-ret i{display:block;height:6px;border-radius:999px;background:var(--turq-cl);width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.lza-tabla tr.cero .lza-ret{color:#B4541A}
+.lza-chip{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;
+  opacity:0;transform:translateY(4px);transition:opacity .5s ease,transform .5s ease}
+.lza-chip.bien{background:#DDF6EE;color:#0B6B4F}
+.lza-chip.mal{background:#FDEBD0;color:#8A4B00}
+.lza-tabla tr.vende td{background:rgba(2,197,202,.06)}
+.lza-tabla tr.cero td{background:rgba(242,162,58,.08)}
+.lza-tabla tr.vende td:first-child,.lza-tabla tr.cero td:first-child{border-radius:12px 0 0 12px;padding-left:10px}
+.lza-tabla tr.vende td:last-child,.lza-tabla tr.cero td:last-child{border-radius:0 12px 12px 0}
+.lza-tabla tbody tr{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
+.lza-demo{margin-top:14px;font-size:12px;color:var(--suave)}
+
+/* Animación al entrar en pantalla */
+.lza.lza-ver .lza-tabla tbody tr{opacity:1;transform:none}
+.lza.lza-ver .lza-tabla tbody tr:nth-child(2){transition-delay:.12s}
+.lza.lza-ver .lza-tabla tbody tr:nth-child(3){transition-delay:.24s}
+.lza.lza-ver .lza-tabla tbody tr:nth-child(4){transition-delay:.36s}
+.lza.lza-ver .lza-tabla tbody tr:nth-child(5){transition-delay:.48s}
+.lza.lza-ver .lza-ret i{width:var(--w);transition-delay:.7s}
+.lza.lza-ver .lza-chip{opacity:1;transform:none;transition-delay:1.5s}
+
+/* Los tres beneficios */
+.lza-lista{list-style:none;display:flex;flex-direction:column;counter-reset:lza}
+.lza-lista li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:22px 0;border-top:1px solid var(--linea);counter-increment:lza}
+.lza-lista li:first-child{border-top:0;padding-top:0}
+.lza-lista li::before{content:counter(lza);width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  background:var(--tinta);color:#fff;font-weight:800;font-size:16px}
+.lza-lista b{display:block;font-size:19px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.lza-lista span{display:block;font-size:15px;line-height:1.55;color:var(--suave);margin-top:4px}
+
+@media (max-width:960px){
+  .lza-grid{grid-template-columns:minmax(0,1fr);gap:40px}
+  .lza-lista{max-width:560px;margin:0 auto}
+}
+@media (max-width:640px){
+  .lza{padding:80px 16px 72px}
+  .lza-une{gap:8px}
+  .lza-une b{display:none}
+  .lza-une span{font-size:13px;padding:7px 12px}
+  .lza-panel{padding:18px;border-radius:22px}
+  .lza-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lza-tabla .opc{display:none}
+  .lza-tabla{font-size:13px}
+  .lza-tabla td{padding:11px 6px}
+  .lza-ret i{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .lza-tabla tbody tr,.lza-chip{opacity:1;transform:none;transition:none}
+  .lza-ret i{width:var(--w);transition:none}
+}
+</style>
+
+<section class="lza" id="anuncios" aria-labelledby="lza-titulo">
+  <div class="lza-cab">
+    <p class="lza-eti"><i></i>Nuevo</p>
+    <h2 class="lza-h2" id="lza-titulo">Tus anuncios y tus ventas, <em>por fin en un solo lugar.</em></h2>
+    <p class="lza-sub">Hasta hoy, lo que inviertes en Facebook e Instagram estaba por un lado y las conversaciones y ventas de tu equipo, por otro. Luzhero los une para que veas qué te devuelve cada campaña.</p>
+  </div>
+
+  <div class="lza-une" aria-hidden="true">
+    <span><i style="background:#1877F2"></i>Anuncios en Facebook e Instagram</span><b>+</b>
+    <span><i style="background:#25D366"></i>Chats de WhatsApp</span><b>+</b>
+    <span><i style="background:var(--ambar)"></i>Ventas de tu equipo</span><b>=</b>
+    <span class="lza-final">Retorno de cada campaña</span>
+  </div>
+
+  <div class="lza-grid">
+    <div class="lza-panel">
+      <div class="lza-kpis">
+        <div class="lza-kpi"><small>Inversión</small><b>3.420 €</b></div>
+        <div class="lza-kpi"><small>Chats</small><b>1.284</b></div>
+        <div class="lza-kpi"><small>Vendido</small><b>33.600 €</b></div>
+        <div class="lza-kpi dest"><small>Retorno</small><b>9,8x</b></div>
+      </div>
+      <table class="lza-tabla">
+        <thead><tr><th>Anuncio</th><th class="opc">Inversión</th><th>Chats</th><th class="opc">Por chat</th><th>Ventas</th><th>Retorno</th></tr></thead>
+        <tbody>
+          <tr class="vende"><td>Punta Cana · Todo incluido<span class="lza-chip bien">Este anuncio vende</span></td><td class="opc">820 €</td><td>412</td><td class="opc">1,99 €</td><td>9</td><td><span class="lza-ret"><i style="--w:56px"></i>18x</span></td></tr>
+          <tr><td>Japón · Cerezos en flor</td><td class="opc">640 €</td><td>158</td><td class="opc">4,05 €</td><td>3</td><td><span class="lza-ret"><i style="--w:55px"></i>17,8x</span></td></tr>
+          <tr><td>Nueva York · Navidad</td><td class="opc">480 €</td><td>121</td><td class="opc">3,97 €</td><td>2</td><td><span class="lza-ret"><i style="--w:38px"></i>12,3x</span></td></tr>
+          <tr class="cero"><td>Caribe · Puente de diciembre<span class="lza-chip mal">Muchos chats, cero ventas</span></td><td class="opc">910 €</td><td>536</td><td class="opc">1,70 €</td><td>0</td><td><span class="lza-ret">0x</span></td></tr>
+          <tr><td>Escapada a Canarias</td><td class="opc">570 €</td><td>57</td><td class="opc">10,00 €</td><td>1</td><td><span class="lza-ret"><i style="--w:8px"></i>2,6x</span></td></tr>
+        </tbody>
+      </table>
+      <p class="lza-demo">Datos de ejemplo · Retorno = valor vendido ÷ inversión</p>
+    </div>
+
+    <ol class="lza-lista">
+      <li><div><b>Analiza el retorno de cada campaña</b><span>Cuánto invertiste, cuántos chats trajo y cuánto vendió, sin exportar nada.</span></div></li>
+      <li><div><b>Planea mejor tus promociones</b><span>Repite lo que vende y corta lo que solo trae curiosos.</span></div></li>
+      <li><div><b>Invierte mejor tu presupuesto</b><span>Lleva el dinero a los destinos que de verdad venden.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<script>
+/* Anima la tabla cuando la sección entra en pantalla */
+(function(){
+  var s = document.getElementById('anuncios'); if (!s) return;
+  if (!('IntersectionObserver' in window)) { s.classList.add('lza-ver'); return; }
+  new IntersectionObserver(function(es, obs){
+    if (es[0].isIntersecting){ obs.disconnect(); s.classList.add('lza-ver'); }
+  }, {threshold:.3}).observe(s.querySelector('.lza-panel'));
+})();
+</script>
+<!-- ===== FIN SECCIÓN · ANUNCIOS ===== -->
 <!-- ===== SECCIÓN · PRECIO ===== -->
 <style>
 .lzq{--tinta:#12172B;--suave:#4A5163;--turq:#00868B;--turq-cl:#02C5CA;--ambar:#F2A23A;
