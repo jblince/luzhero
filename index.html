@@ -927,6 +927,16 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 .lza-tabla tr.vende td:last-child,.lza-tabla tr.cero td:last-child{border-radius:0 12px 12px 0}
 .lza-tabla tbody tr{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
 .lza-demo{margin-top:14px;font-size:12px;color:var(--suave)}
+.lza-chip:empty{display:none}
+.lza-sem{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:13px;font-weight:700;color:var(--suave)}
+.lza-dots{display:flex;gap:6px}
+.lza-dots i{display:block;width:22px;height:5px;border-radius:999px;background:#E3E6EE;transition:background .4s ease}
+.lza-dots i.on{background:var(--turq-cl)}
+/* Modo vivo: tras la entrada, las filas se reordenan semana a semana */
+.lza.lza-vivo .lza-tabla tbody tr{transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s ease;transition-delay:0s}
+.lza.lza-vivo .lza-chip{transition-delay:0s}
+.lza.lza-vivo .lza-ret i{transition:width .7s cubic-bezier(.2,.8,.2,1);transition-delay:0s}
+.lza-tabla td{transition:background-color .5s ease}
 
 /* Animación al entrar en pantalla */
 .lza.lza-ver .lza-tabla tbody tr{opacity:1;transform:none}
@@ -984,20 +994,21 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 
   <div class="lza-grid">
     <div class="lza-panel">
+      <div class="lza-sem" aria-hidden="true"><span id="lza-sem-txt">Semana 4</span><span class="lza-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
       <div class="lza-kpis">
-        <div class="lza-kpi"><small>Inversión</small><b>3.420 €</b></div>
-        <div class="lza-kpi"><small>Chats</small><b>1.284</b></div>
-        <div class="lza-kpi"><small>Vendido</small><b>33.600 €</b></div>
-        <div class="lza-kpi dest"><small>Retorno</small><b>9,8x</b></div>
+        <div class="lza-kpi"><small>Inversión</small><b data-t="inv">3.420 €</b></div>
+        <div class="lza-kpi"><small>Chats</small><b data-t="ch">1.284</b></div>
+        <div class="lza-kpi"><small>Vendido</small><b data-t="val">37.400 €</b></div>
+        <div class="lza-kpi dest"><small>Retorno</small><b data-t="ret">10,9x</b></div>
       </div>
       <table class="lza-tabla">
         <thead><tr><th>Anuncio</th><th class="opc">Inversión</th><th>Chats</th><th class="opc">Por chat</th><th>Ventas</th><th>Retorno</th></tr></thead>
         <tbody>
-          <tr class="vende"><td>Punta Cana · Todo incluido<span class="lza-chip bien">Este anuncio vende</span></td><td class="opc">820 €</td><td>412</td><td class="opc">1,99 €</td><td>9</td><td><span class="lza-ret"><i style="--w:56px"></i>18x</span></td></tr>
-          <tr><td>Japón · Cerezos en flor</td><td class="opc">640 €</td><td>158</td><td class="opc">4,05 €</td><td>3</td><td><span class="lza-ret"><i style="--w:55px"></i>17,8x</span></td></tr>
-          <tr><td>Nueva York · Navidad</td><td class="opc">480 €</td><td>121</td><td class="opc">3,97 €</td><td>2</td><td><span class="lza-ret"><i style="--w:38px"></i>12,3x</span></td></tr>
-          <tr class="cero"><td>Caribe · Puente de diciembre<span class="lza-chip mal">Muchos chats, cero ventas</span></td><td class="opc">910 €</td><td>536</td><td class="opc">1,70 €</td><td>0</td><td><span class="lza-ret">0x</span></td></tr>
-          <tr><td>Escapada a Canarias</td><td class="opc">570 €</td><td>57</td><td class="opc">10,00 €</td><td>1</td><td><span class="lza-ret"><i style="--w:8px"></i>2,6x</span></td></tr>
+          <tr data-k="jp" class="vende"><td>Japón · Cerezos en flor<span class="lza-chip bien">Este anuncio vende</span></td><td class="opc" data-c="inv">640 €</td><td data-c="ch">158</td><td class="opc" data-c="pc">4,05 €</td><td data-c="v">4</td><td><span class="lza-ret"><i style="--w:56px"></i><span data-c="ret">23,8x</span></span></td></tr>
+          <tr data-k="pc"><td>Punta Cana · Todo incluido<span class="lza-chip"></span></td><td class="opc" data-c="inv">820 €</td><td data-c="ch">412</td><td class="opc" data-c="pc">1,99 €</td><td data-c="v">9</td><td><span class="lza-ret"><i style="--w:42px"></i><span data-c="ret">18x</span></span></td></tr>
+          <tr data-k="ny"><td>Nueva York · Navidad<span class="lza-chip"></span></td><td class="opc" data-c="inv">480 €</td><td data-c="ch">121</td><td class="opc" data-c="pc">3,97 €</td><td data-c="v">2</td><td><span class="lza-ret"><i style="--w:29px"></i><span data-c="ret">12,3x</span></span></td></tr>
+          <tr data-k="ca"><td>Escapada a Canarias<span class="lza-chip"></span></td><td class="opc" data-c="inv">570 €</td><td data-c="ch">57</td><td class="opc" data-c="pc">10,00 €</td><td data-c="v">1</td><td><span class="lza-ret"><i style="--w:6px"></i><span data-c="ret">2,6x</span></span></td></tr>
+          <tr data-k="cb" class="cero"><td>Caribe · Puente de diciembre<span class="lza-chip mal">Muchos chats, cero ventas</span></td><td class="opc" data-c="inv">910 €</td><td data-c="ch">536</td><td class="opc" data-c="pc">1,70 €</td><td data-c="v">0</td><td><span class="lza-ret"><i style="--w:0px"></i><span data-c="ret">0x</span></span></td></tr>
         </tbody>
       </table>
       <p class="lza-demo">Datos de ejemplo · Retorno = valor vendido ÷ inversión</p>
@@ -1012,13 +1023,95 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 </section>
 
 <script>
-/* Anima la tabla cuando la sección entra en pantalla */
+/* Anima la tabla al entrar en pantalla y luego la hace evolucionar semana a semana (datos de ejemplo, acumulados) */
 (function(){
   var s = document.getElementById('anuncios'); if (!s) return;
-  if (!('IntersectionObserver' in window)) { s.classList.add('lza-ver'); return; }
+  var D = {
+    pc:{inv:[205,410,615,820], ch:[103,206,309,412], v:[3,5,7,9], val:[4900,8200,11500,14800]},
+    jp:{inv:[160,320,480,640], ch:[40,79,119,158],  v:[0,1,2,4], val:[0,3800,7600,15200]},
+    ny:{inv:[120,240,360,480], ch:[30,60,91,121],   v:[0,1,1,2], val:[0,2950,2950,5900]},
+    ca:{inv:[143,285,428,570], ch:[14,28,43,57],    v:[0,1,1,1], val:[0,1500,1500,1500]},
+    cb:{inv:[228,455,683,910], ch:[134,268,402,536],v:[0,0,0,0], val:[0,0,0,0]}
+  };
+  var tbody = s.querySelector('.lza-tabla tbody'), semTxt = document.getElementById('lza-semana') || document.getElementById('lza-sem-txt');
+  var dots = s.querySelectorAll('.lza-dots i'), rows = {}, cur = {};
+  tbody.querySelectorAll('tr').forEach(function(tr){ rows[tr.dataset.k] = tr; });
+  function miles(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  function dec(n){ var r = Math.round(n * 10) / 10; return (r % 1 === 0 ? String(r) : r.toFixed(1).replace('.', ',')); }
+  function eur(n){ return n.toFixed(2).replace('.', ',') + ' €'; }
+  function vals(k, w){ var d = D[k]; return {inv:d.inv[w], ch:d.ch[w], v:d.v[w], val:d.val[w]}; }
+  function pinta(k, o){
+    var tr = rows[k], q = function(c){ return tr.querySelector('[data-c="' + c + '"]'); };
+    q('inv').textContent = miles(o.inv) + ' €'; q('ch').textContent = miles(o.ch);
+    q('pc').textContent = eur(Math.round(o.inv / Math.max(o.ch, 1) * 100) / 100); q('v').textContent = Math.round(o.v);
+    var r = o.inv ? o.val / o.inv : 0; q('ret').textContent = dec(r) + 'x';
+    tr.querySelector('.lza-ret i').style.setProperty('--w', Math.min(56, r / 24 * 56) + 'px');
+  }
+  function totales(o){
+    var t = {inv:0, ch:0, val:0}; for (var k in o){ t.inv += o[k].inv; t.ch += o[k].ch; t.val += o[k].val; }
+    s.querySelector('[data-t="inv"]').textContent = miles(t.inv) + ' €';
+    s.querySelector('[data-t="ch"]').textContent = miles(t.ch);
+    s.querySelector('[data-t="val"]').textContent = miles(t.val) + ' €';
+    s.querySelector('[data-t="ret"]').textContent = dec(t.inv ? t.val / t.inv : 0) + 'x';
+  }
+  function semana(w){
+    semTxt.textContent = 'Semana ' + (w + 1);
+    dots.forEach(function(d, i){ d.classList.toggle('on', i <= w); });
+    var fin = {}, ini = {}; Object.keys(D).forEach(function(k){ fin[k] = vals(k, w); ini[k] = (w > 0 && cur[k]) || {inv:0, ch:0, v:0, val:0}; });
+    // Orden por retorno; empates: menos chats primero (el que más chats tiene sin vender queda al fondo)
+    var orden = Object.keys(D).sort(function(a, b){
+      var ra = fin[a].val / fin[a].inv, rb = fin[b].val / fin[b].inv;
+      return rb - ra || fin[a].ch - fin[b].ch;
+    });
+    // FLIP: mide, reordena y anima desde la posición anterior
+    var antes = {}; orden.forEach(function(k){ antes[k] = rows[k].getBoundingClientRect().top; });
+    orden.forEach(function(k){ tbody.appendChild(rows[k]); });
+    orden.forEach(function(k){
+      var dy = antes[k] - rows[k].getBoundingClientRect().top;
+      if (dy){ rows[k].style.transition = 'none'; rows[k].style.transform = 'translateY(' + dy + 'px)'; }
+    });
+    void tbody.offsetWidth;
+    orden.forEach(function(k){ rows[k].style.transition = ''; rows[k].style.transform = ''; });
+    // Etiquetas
+    orden.forEach(function(k, i){
+      var tr = rows[k], chip = tr.querySelector('.lza-chip'), top = i === 0 && fin[k].val > 0, cero = fin[k].v === 0 && fin[k].ch >= 200;
+      tr.classList.toggle('vende', top); tr.classList.toggle('cero', cero);
+      chip.className = 'lza-chip' + (top ? ' bien' : cero ? ' mal' : '');
+      chip.textContent = top ? 'Este anuncio vende' : cero ? 'Muchos chats, cero ventas' : '';
+    });
+    // Cifras que suben
+    var t0 = performance.now();
+    (function paso(t){
+      var p = Math.min(1, (t - t0) / 800), e = 1 - Math.pow(1 - p, 3), o = {};
+      Object.keys(D).forEach(function(k){
+        o[k] = {}; ['inv','ch','v','val'].forEach(function(c){ o[k][c] = ini[k][c] + (fin[k][c] - ini[k][c]) * e; });
+        pinta(k, o[k]);
+      });
+      totales(o);
+      if (p < 1) requestAnimationFrame(paso); else cur = fin;
+    })(t0);
+  }
+  var w = 0, timer;
+  function ciclo(){
+    semana(w);
+    var espera = w === 3 ? 5000 : 2600;
+    w = (w + 1) % 4;
+    timer = setTimeout(ciclo, espera);
+  }
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function empezar(){
+    s.classList.add('lza-ver');
+    if (reduce) return;
+    setTimeout(function(){ s.classList.add('lza-vivo'); ciclo(); }, 2600);
+  }
+  if (!('IntersectionObserver' in window)) { empezar(); return; }
   new IntersectionObserver(function(es, obs){
-    if (es[0].isIntersecting){ obs.disconnect(); s.classList.add('lza-ver'); }
+    if (es[0].isIntersecting){ obs.disconnect(); empezar(); }
   }, {threshold:.3}).observe(s.querySelector('.lza-panel'));
+  document.addEventListener('visibilitychange', function(){
+    if (!s.classList.contains('lza-vivo')) return;
+    clearTimeout(timer); if (!document.hidden) timer = setTimeout(ciclo, 800);
+  });
 })();
 </script>
 <!-- ===== FIN SECCIÓN · ANUNCIOS ===== -->
