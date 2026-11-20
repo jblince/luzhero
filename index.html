@@ -397,19 +397,19 @@ html,body{margin:0;background:#FFFFFF}
   <div class="lzp-in">
     <div>
       <p class="lzp-eti">El problema</p>
-      <h2 class="lzp-h2" id="lzp-titulo">Tu agencia vende por WhatsApp. <em>Pero no ves lo que pasa ahí.</em></h2>
+      <h2 class="lzp-h2" id="lzp-titulo">Más conversaciones, <em>menos control.</em></h2>
       <ul class="lzp-lista">
         <li>
-          <span class="lzp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M12 8v4l2 2"/></svg></span>
-          <div><h3>Leads que se enfrían</h3><p>Los mensajes que llegan de tus anuncios en Meta se pierden entre los chats personales de cada asesor.</p></div>
-        </li>
-        <li>
           <span class="lzp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"/><path d="M14 3v6h6"/><path d="M12 13v3"/><path d="M12 19h.01"/></svg></span>
-          <div><h3>Cotizaciones sin seguimiento</h3><p>Nadie sabe cuántas propuestas salieron ayer ni cuáles llevan más de 48 horas sin respuesta.</p></div>
+          <div><h3>Cotizaciones sin seguimiento</h3><p>Las propuestas enviadas no se registran y muchas se quedan sin respuesta.</p></div>
         </li>
         <li>
-          <span class="lzp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l3-3 3 2 5-6"/><path d="M18 8h.01"/></svg></span>
-          <div><h3>Números a fin de mes</h3><p>Cada asesor trabaja a su manera y tú te enteras de cómo va el negocio cuando ya es tarde para corregir.</p></div>
+          <span class="lzp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 9l3 3 3-2 5 6"/><path d="M18 16h.01"/></svg></span>
+          <div><h3>Ventas perdidas</h3><p>Un cliente que no recibe respuesta a tiempo reserva con otra agencia.</p></div>
+        </li>
+        <li>
+          <span class="lzp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M12 8v4l2 2"/></svg></span>
+          <div><h3>Horas dedicadas a cotizar</h3><p>Preparar cada propuesta a partir del GDS consume horas que tu equipo podría dedicar a vender.</p></div>
         </li>
       </ul>
     </div>
@@ -467,6 +467,10 @@ html,body{margin:0;background:#FFFFFF}
 .lzc-escena{max-width:1120px;margin:48px auto 0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:56px;align-items:center}
 .lzc-txt h3{font-size:clamp(24px,2.4vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.15}
 .lzc-txt p{margin-top:14px;font-size:17px;line-height:1.6;color:rgba(255,255,255,.75)}
+.lzc-pts{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.lzc-pts li{position:relative;padding-left:30px;font-size:17px;line-height:1.5;color:rgba(255,255,255,.8);text-align:left}
+.lzc-pts li::before{content:"";position:absolute;left:0;top:.3em;width:18px;height:18px;border-radius:50%;
+  background:rgba(2,197,202,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2302C5CA' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center/12px no-repeat}
 .lzc-mods{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .lzc-mods span{font-size:13px;font-weight:600;border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
 .lzc-panel[hidden]{display:none}
@@ -517,7 +521,7 @@ html,body{margin:0;background:#FFFFFF}
 @media (max-width:960px){
   .lzc-escena{grid-template-columns:minmax(0,1fr);gap:28px}
   .lzc-txt{text-align:center}
-  .lzc-mods{justify-content:center}
+  .lzc-pts{max-width:460px;margin-left:auto;margin-right:auto}
 }
 @media (max-width:640px){
   .lzc{padding:0 8px}
@@ -534,8 +538,8 @@ html,body{margin:0;background:#FFFFFF}
 <section class="lzc" id="como-funciona" aria-labelledby="lzc-titulo"><div class="lzc-box">
   <div class="lzc-cab">
     <p class="lzc-eti">Cómo funciona</p>
-    <h2 class="lzc-h2" id="lzc-titulo">Todo tu ciclo comercial, <em>en un solo lugar.</em></h2>
-    <p class="lzc-sub">Tu equipo trabaja en WhatsApp. Tú lo ves todo en la web. Lo que pasa en uno aparece en el otro.</p>
+    <h2 class="lzc-h2" id="lzc-titulo">Cada etapa de la venta,<br><em>conectada.</em></h2>
+    <p class="lzc-sub">Tu equipo trabaja en WhatsApp; tú lo supervisas en la web.</p>
   </div>
 
   <div class="lzc-tabs" role="tablist" aria-label="Etapas del ciclo comercial">
@@ -549,9 +553,8 @@ html,body{margin:0;background:#FFFFFF}
   <!-- 01 · CAPTAR -->
   <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p1" aria-labelledby="lzc-t1">
     <div class="lzc-txt">
-      <h3>Capta cada lead de tus anuncios</h3>
-      <p>Quien escribe desde tus anuncios de Meta llega a un chatbot que le ofrece tus planes armados, con precio y flyer, o le pide los datos de su viaje a medida.</p>
-      <div class="lzc-mods"><span>Chatbot de entrada</span><span>Planes</span></div>
+      <h3>Respuesta inmediata, oportunidades listas para cerrar</h3>
+      <ul class="lzc-pts"><li>El cliente elige planes armados o viaje a medida, las 24 horas.</li><li>Tu propio chatbot identifica qué busca antes de ocupar a tu equipo.</li><li>El asesor inicia el chat con el destino y las fechas claras.</li></ul>
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/planes</b></div>
@@ -575,9 +578,8 @@ Salidas: 12 dic y 9 ene<time>9:42</time></div>
   <!-- 02 · ATENDER -->
   <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p2" aria-labelledby="lzc-t2" hidden>
     <div class="lzc-txt">
-      <h3>Atiende con todo el equipo en una bandeja</h3>
-      <p>Las conversaciones dejan de vivir en los móviles de cada asesor. Un tablero te muestra en qué punto está cada cliente, y quien pide hablar con un asesor entra con todos sus datos.</p>
-      <div class="lzc-mods"><span>Inbox</span><span>Tablero Kanban</span></div>
+      <h3>Conversaciones visibles, tiempos bajo control</h3>
+      <ul class="lzc-pts"><li>Supervisas todas las conversaciones de tu equipo en un solo lugar.</li><li>Ves en qué etapa está cada negociación.</li><li>Identificas rápido qué clientes siguen esperando respuesta.</li></ul>
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/inbox</b></div>
@@ -597,9 +599,8 @@ Salidas: 12 dic y 9 ene<time>9:42</time></div>
   <!-- 03 · COTIZAR -->
   <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p3" aria-labelledby="lzc-t3" hidden>
     <div class="lzc-txt">
-      <h3>Cotiza en 3-5 minutos</h3>
-      <p>El asesor pega el texto del GDS y Luzhero crea una propuesta visual con la marca de tu agencia. Cotizar ya es registrar: entra sola en el pipeline, sin trabajo extra.</p>
-      <div class="lzc-mods"><span>Propuestas digitales</span><span>Asistente de WhatsApp</span></div>
+      <h3>Propuestas en minutos, cero trabajo duplicado</h3>
+      <ul class="lzc-pts"><li>Ahorras tiempo al preparar cada plan a medida.</li><li>Cada propuesta enviada alimenta tus cifras automáticamente.</li><li>Das a tus clientes una imagen profesional con tu marca.</li></ul>
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/cotizaciones</b></div>
@@ -621,9 +622,8 @@ Salidas: 12 dic y 9 ene<time>9:42</time></div>
   <!-- 04 · CERRAR -->
   <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p4" aria-labelledby="lzc-t4" hidden>
     <div class="lzc-txt">
-      <h3>Cierra y reactiva</h3>
-      <p>Marca cada venta desde WhatsApp en dos toques. Los viajes vendidos aparecen en Mis viajes, y con campañas por WhatsApp reactivas a quien no compró.</p>
-      <div class="lzc-mods"><span>Estados en 2 toques</span><span>Mis viajes</span><span>Campañas</span></div>
+      <h3>Seguimiento oportuno, tablero al día</h3>
+      <ul class="lzc-pts"><li>Tus asesores actualizan cada venta sin salir de WhatsApp.</li><li>Las cotizaciones vencidas cambian de estado automáticamente.</li><li>Tus cifras reflejan solo las oportunidades vigentes.</li></ul>
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/campana</b></div>
@@ -646,9 +646,8 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
   <!-- 05 · MEDIR -->
   <div class="lzc-panel lzc-escena" role="tabpanel" id="lzc-p5" aria-labelledby="lzc-t5" hidden>
     <div class="lzc-txt">
-      <h3>Mide tu negocio cada mañana</h3>
-      <p>Un panel con ventas, cotizaciones abiertas y rendimiento por asesor. Y a las 8:00, el resumen del día llega a tu WhatsApp sin que lo pidas.</p>
-      <div class="lzc-mods"><span>Panel de inicio</span><span>Resumen de las 8:00</span><span>Rendimiento por asesor</span></div>
+      <h3>Números claros, decisiones a tiempo</h3>
+      <ul class="lzc-pts"><li>A las 8:00 recibes tu resumen de ventas en WhatsApp.</li><li>Detectas a tiempo qué asesor necesita apoyo.</li><li>Sabes cuánto vende cada asesor y todo el equipo.</li></ul>
     </div>
     <div class="lzc-comp" aria-hidden="true">
       <div class="lzc-lap"><div class="lzc-nav"><i></i><i></i><i></i><b>luzhero.com/inicio</b></div>
