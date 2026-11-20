@@ -915,7 +915,6 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 .lza-tabla td:first-child{font-weight:600;white-space:normal}
 .lza-tabla td small{display:block;font-size:12px;font-weight:500;color:var(--suave)}
 .lza-ret{display:inline-flex;align-items:center;gap:8px;font-weight:800}
-.lza-ret i{display:block;height:6px;border-radius:999px;background:var(--turq-cl);width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
 .lza-tabla tr.cero .lza-ret{color:#B4541A}
 .lza-chip{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;
   opacity:0;transform:translateY(4px);transition:opacity .5s ease,transform .5s ease}
@@ -931,7 +930,6 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 /* Modo vivo: un cambio cada vez; la cifra que cambia late y, si una fila adelanta a otra, se cambian de sitio */
 .lza.lza-vivo .lza-tabla tbody tr{transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s ease;transition-delay:0s}
 .lza.lza-vivo .lza-chip{transition-delay:0s}
-.lza.lza-vivo .lza-ret i{transition:width .7s cubic-bezier(.2,.8,.2,1);transition-delay:0s}
 .lza-tabla td{transition:background-color .5s ease}
 .lza-tabla [data-c]{transition:color .4s ease,transform .25s ease}
 .lza-tabla span[data-c]{display:inline-block}
@@ -947,7 +945,6 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 .lza.lza-ver .lza-tabla tbody tr:nth-child(3){transition-delay:.24s}
 .lza.lza-ver .lza-tabla tbody tr:nth-child(4){transition-delay:.36s}
 .lza.lza-ver .lza-tabla tbody tr:nth-child(5){transition-delay:.48s}
-.lza.lza-ver .lza-ret i{width:var(--w);transition-delay:.7s}
 .lza.lza-ver .lza-chip{opacity:1;transform:none;transition-delay:1.5s}
 
 /* Los tres beneficios */
@@ -973,11 +970,9 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
   .lza-tabla .opc{display:none}
   .lza-tabla{font-size:13px}
   .lza-tabla td{padding:11px 6px}
-  .lza-ret i{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   .lza-tabla tbody tr,.lza-chip{opacity:1;transform:none;transition:none}
-  .lza-ret i{width:var(--w);transition:none}
 }
 </style>
 
@@ -1006,11 +1001,11 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
       <table class="lza-tabla">
         <thead><tr><th>Anuncio</th><th class="opc">Inversión</th><th>Chats</th><th class="opc">Por chat</th><th>Ventas</th><th>Retorno</th></tr></thead>
         <tbody>
-          <tr data-k="jp" class="vende"><td>Japón · Cerezos en flor<span class="lza-chip bien">Este anuncio vende</span></td><td class="opc" data-c="inv">640 €</td><td data-c="ch">158</td><td class="opc" data-c="pc">4,05 €</td><td data-c="v">4</td><td><span class="lza-ret"><i style="--w:56px"></i><span data-c="ret">23,8x</span></span></td></tr>
-          <tr data-k="pc"><td>Punta Cana · Todo incluido<span class="lza-chip"></span></td><td class="opc" data-c="inv">820 €</td><td data-c="ch">412</td><td class="opc" data-c="pc">1,99 €</td><td data-c="v">9</td><td><span class="lza-ret"><i style="--w:42px"></i><span data-c="ret">18x</span></span></td></tr>
-          <tr data-k="ny"><td>Nueva York · Navidad<span class="lza-chip"></span></td><td class="opc" data-c="inv">480 €</td><td data-c="ch">121</td><td class="opc" data-c="pc">3,97 €</td><td data-c="v">2</td><td><span class="lza-ret"><i style="--w:29px"></i><span data-c="ret">12,3x</span></span></td></tr>
-          <tr data-k="ca"><td>Escapada a Canarias<span class="lza-chip"></span></td><td class="opc" data-c="inv">570 €</td><td data-c="ch">57</td><td class="opc" data-c="pc">10,00 €</td><td data-c="v">1</td><td><span class="lza-ret"><i style="--w:6px"></i><span data-c="ret">2,6x</span></span></td></tr>
-          <tr data-k="cb" class="cero"><td>Caribe · Puente de diciembre<span class="lza-chip mal">Muchos chats, cero ventas</span></td><td class="opc" data-c="inv">910 €</td><td data-c="ch">536</td><td class="opc" data-c="pc">1,70 €</td><td data-c="v">0</td><td><span class="lza-ret"><i style="--w:0px"></i><span data-c="ret">0x</span></span></td></tr>
+          <tr data-k="jp" class="vende"><td>Japón · Cerezos en flor<span class="lza-chip bien">Este anuncio vende</span></td><td class="opc" data-c="inv">640 €</td><td data-c="ch">158</td><td class="opc" data-c="pc">4,05 €</td><td data-c="v">4</td><td><span class="lza-ret"><span data-c="ret">23,8x</span></span></td></tr>
+          <tr data-k="pc"><td>Punta Cana · Todo incluido<span class="lza-chip"></span></td><td class="opc" data-c="inv">820 €</td><td data-c="ch">412</td><td class="opc" data-c="pc">1,99 €</td><td data-c="v">9</td><td><span class="lza-ret"><span data-c="ret">18x</span></span></td></tr>
+          <tr data-k="ny"><td>Nueva York · Navidad<span class="lza-chip"></span></td><td class="opc" data-c="inv">480 €</td><td data-c="ch">121</td><td class="opc" data-c="pc">3,97 €</td><td data-c="v">2</td><td><span class="lza-ret"><span data-c="ret">12,3x</span></span></td></tr>
+          <tr data-k="ca"><td>Escapada a Canarias<span class="lza-chip"></span></td><td class="opc" data-c="inv">570 €</td><td data-c="ch">57</td><td class="opc" data-c="pc">10,00 €</td><td data-c="v">1</td><td><span class="lza-ret"><span data-c="ret">2,6x</span></span></td></tr>
+          <tr data-k="cb" class="cero"><td>Caribe · Puente de diciembre<span class="lza-chip mal">Muchos chats, cero ventas</span></td><td class="opc" data-c="inv">910 €</td><td data-c="ch">536</td><td class="opc" data-c="pc">1,70 €</td><td data-c="v">0</td><td><span class="lza-ret"><span data-c="ret">0x</span></span></td></tr>
         </tbody>
       </table>
       <p class="lza-demo">Datos de ejemplo · Retorno = valor vendido ÷ inversión</p>
@@ -1050,7 +1045,6 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
     q(k,'inv').textContent = miles(inv(o)) + ' €'; q(k,'ch').textContent = miles(o.ch);
     q(k,'pc').textContent = o.cpc.toFixed(2).replace('.', ',') + ' €'; q(k,'v').textContent = Math.round(o.v);
     q(k,'ret').textContent = dec(ret(o)) + 'x';
-    rows[k].querySelector('.lza-ret i').style.setProperty('--w', Math.min(56, ret(o) / 24 * 56) + 'px');
   }
   function totales(pulso){
     var t = {inv:0, ch:0, val:0}; for (var k in E){ t.inv += inv(E[k]); t.ch += E[k].ch; t.val += E[k].val; }
