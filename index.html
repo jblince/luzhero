@@ -928,15 +928,18 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 .lza-tabla tbody tr{opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
 .lza-demo{margin-top:14px;font-size:12px;color:var(--suave)}
 .lza-chip:empty{display:none}
-.lza-sem{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:13px;font-weight:700;color:var(--suave)}
-.lza-dots{display:flex;gap:6px}
-.lza-dots i{display:block;width:22px;height:5px;border-radius:999px;background:#E3E6EE;transition:background .4s ease}
-.lza-dots i.on{background:var(--turq-cl)}
-/* Modo vivo: tras la entrada, las filas se reordenan semana a semana */
+/* Modo vivo: un cambio cada vez; la cifra que cambia late y, si una fila adelanta a otra, se cambian de sitio */
 .lza.lza-vivo .lza-tabla tbody tr{transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s ease;transition-delay:0s}
 .lza.lza-vivo .lza-chip{transition-delay:0s}
 .lza.lza-vivo .lza-ret i{transition:width .7s cubic-bezier(.2,.8,.2,1);transition-delay:0s}
 .lza-tabla td{transition:background-color .5s ease}
+.lza-tabla [data-c]{transition:color .4s ease,transform .25s ease}
+.lza-tabla span[data-c]{display:inline-block}
+.lza-tabla [data-c].lza-pulso{color:var(--turq);font-weight:700}
+.lza-tabla span[data-c].lza-pulso{transform:scale(1.15)}
+.lza-tabla tr.cero [data-c].lza-pulso{color:#B4541A}
+.lza-kpi b{transition:transform .25s ease}
+.lza-kpi b.lza-pulso{transform:scale(1.06)}
 
 /* Animación al entrar en pantalla */
 .lza.lza-ver .lza-tabla tbody tr{opacity:1;transform:none}
@@ -994,7 +997,6 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 
   <div class="lza-grid">
     <div class="lza-panel">
-      <div class="lza-sem" aria-hidden="true"><span id="lza-sem-txt">Semana 4</span><span class="lza-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
       <div class="lza-kpis">
         <div class="lza-kpi"><small>Inversión</small><b data-t="inv">3.420 €</b></div>
         <div class="lza-kpi"><small>Chats</small><b data-t="ch">1.284</b></div>
@@ -1023,86 +1025,84 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
 </section>
 
 <script>
-/* Anima la tabla al entrar en pantalla y luego la hace evolucionar semana a semana (datos de ejemplo, acumulados) */
+/* Anima la tabla al entrar en pantalla y luego la mantiene viva con un cambio cada vez (datos de ejemplo) */
 (function(){
   var s = document.getElementById('anuncios'); if (!s) return;
-  var D = {
-    pc:{inv:[205,410,615,820], ch:[103,206,309,412], v:[3,5,7,9], val:[4900,8200,11500,14800]},
-    jp:{inv:[160,320,480,640], ch:[40,79,119,158],  v:[0,1,2,4], val:[0,3800,7600,15200]},
-    ny:{inv:[120,240,360,480], ch:[30,60,91,121],   v:[0,1,1,2], val:[0,2950,2950,5900]},
-    ca:{inv:[143,285,428,570], ch:[14,28,43,57],    v:[0,1,1,1], val:[0,1500,1500,1500]},
-    cb:{inv:[228,455,683,910], ch:[134,268,402,536],v:[0,0,0,0], val:[0,0,0,0]}
+  // Estado inicial: coste por chat fijo por anuncio; inversión = chats × coste por chat
+  var BASE = {
+    pc:{cpc:1.99, ch:206, v:5, val:8200},
+    ny:{cpc:4.00, ch:60,  v:1, val:2950},
+    jp:{cpc:4.05, ch:79,  v:1, val:3800},
+    ca:{cpc:10.0, ch:28,  v:1, val:1500},
+    cb:{cpc:1.70, ch:268, v:0, val:0}
   };
-  var tbody = s.querySelector('.lza-tabla tbody'), semTxt = document.getElementById('lza-semana') || document.getElementById('lza-sem-txt');
-  var dots = s.querySelectorAll('.lza-dots i'), rows = {}, cur = {};
+  // Guion: un cambio cada vez. Japón adelanta a Nueva York (paso 2) y luego a Punta Cana (paso 9); el Caribe solo suma chats
+  var GUION = [['cb','ch',14],['ny','ch',8],['pc','ch',11],['cb','ch',16],['ca','venta',1500],['jp','ch',6],['pc','venta',1650],['cb','ch',12],['jp','venta',4600],['cb','ch',10]];
+  var tbody = s.querySelector('.lza-tabla tbody'), rows = {}, E, paso, timer;
   tbody.querySelectorAll('tr').forEach(function(tr){ rows[tr.dataset.k] = tr; });
   function miles(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
-  function dec(n){ var r = Math.round(n * 10) / 10; return (r % 1 === 0 ? String(r) : r.toFixed(1).replace('.', ',')); }
-  function eur(n){ return n.toFixed(2).replace('.', ',') + ' €'; }
-  function vals(k, w){ var d = D[k]; return {inv:d.inv[w], ch:d.ch[w], v:d.v[w], val:d.val[w]}; }
-  function pinta(k, o){
-    var tr = rows[k], q = function(c){ return tr.querySelector('[data-c="' + c + '"]'); };
-    q('inv').textContent = miles(o.inv) + ' €'; q('ch').textContent = miles(o.ch);
-    q('pc').textContent = eur(Math.round(o.inv / Math.max(o.ch, 1) * 100) / 100); q('v').textContent = Math.round(o.v);
-    var r = o.inv ? o.val / o.inv : 0; q('ret').textContent = dec(r) + 'x';
-    tr.querySelector('.lza-ret i').style.setProperty('--w', Math.min(56, r / 24 * 56) + 'px');
+  function dec(n){ var r = Math.round(n * 10) / 10; return r % 1 === 0 ? String(r) : r.toFixed(1).replace('.', ','); }
+  function inv(o){ return o.ch * o.cpc; }
+  function ret(o){ return o.val / inv(o); }
+  function q(k, c){ return rows[k].querySelector('[data-c="' + c + '"]'); }
+  function late(el){ el.classList.add('lza-pulso'); setTimeout(function(){ el.classList.remove('lza-pulso'); }, 450); }
+  function pintaFila(k, o){
+    q(k,'inv').textContent = miles(inv(o)) + ' €'; q(k,'ch').textContent = miles(o.ch);
+    q(k,'pc').textContent = o.cpc.toFixed(2).replace('.', ',') + ' €'; q(k,'v').textContent = Math.round(o.v);
+    q(k,'ret').textContent = dec(ret(o)) + 'x';
+    rows[k].querySelector('.lza-ret i').style.setProperty('--w', Math.min(56, ret(o) / 24 * 56) + 'px');
   }
-  function totales(o){
-    var t = {inv:0, ch:0, val:0}; for (var k in o){ t.inv += o[k].inv; t.ch += o[k].ch; t.val += o[k].val; }
-    s.querySelector('[data-t="inv"]').textContent = miles(t.inv) + ' €';
-    s.querySelector('[data-t="ch"]').textContent = miles(t.ch);
-    s.querySelector('[data-t="val"]').textContent = miles(t.val) + ' €';
-    s.querySelector('[data-t="ret"]').textContent = dec(t.inv ? t.val / t.inv : 0) + 'x';
+  function totales(pulso){
+    var t = {inv:0, ch:0, val:0}; for (var k in E){ t.inv += inv(E[k]); t.ch += E[k].ch; t.val += E[k].val; }
+    var m = {inv: miles(t.inv) + ' €', ch: miles(t.ch), val: miles(t.val) + ' €', ret: dec(t.val / t.inv) + 'x'};
+    for (var c in m){ var b = s.querySelector('[data-t="' + c + '"]'); if (b.textContent !== m[c]){ b.textContent = m[c]; if (pulso) late(b); } }
   }
-  function semana(w){
-    semTxt.textContent = 'Semana ' + (w + 1);
-    dots.forEach(function(d, i){ d.classList.toggle('on', i <= w); });
-    var fin = {}, ini = {}; Object.keys(D).forEach(function(k){ fin[k] = vals(k, w); ini[k] = (w > 0 && cur[k]) || {inv:0, ch:0, v:0, val:0}; });
-    // Orden por retorno; empates: menos chats primero (el que más chats tiene sin vender queda al fondo)
-    var orden = Object.keys(D).sort(function(a, b){
-      var ra = fin[a].val / fin[a].inv, rb = fin[b].val / fin[b].inv;
-      return rb - ra || fin[a].ch - fin[b].ch;
-    });
-    // FLIP: mide, reordena y anima desde la posición anterior
-    var antes = {}; orden.forEach(function(k){ antes[k] = rows[k].getBoundingClientRect().top; });
-    orden.forEach(function(k){ tbody.appendChild(rows[k]); });
-    orden.forEach(function(k){
-      var dy = antes[k] - rows[k].getBoundingClientRect().top;
-      if (dy){ rows[k].style.transition = 'none'; rows[k].style.transform = 'translateY(' + dy + 'px)'; }
-    });
-    void tbody.offsetWidth;
-    orden.forEach(function(k){ rows[k].style.transition = ''; rows[k].style.transform = ''; });
-    // Etiquetas
-    orden.forEach(function(k, i){
-      var tr = rows[k], chip = tr.querySelector('.lza-chip'), top = i === 0 && fin[k].val > 0, cero = fin[k].v === 0 && fin[k].ch >= 200;
+  function orden(){ return Object.keys(E).sort(function(a, b){ return ret(E[b]) - ret(E[a]) || E[a].ch - E[b].ch; }); }
+  function etiquetas(ord){
+    ord.forEach(function(k, i){
+      var tr = rows[k], chip = tr.querySelector('.lza-chip'), top = i === 0, cero = E[k].v === 0;
       tr.classList.toggle('vende', top); tr.classList.toggle('cero', cero);
       chip.className = 'lza-chip' + (top ? ' bien' : cero ? ' mal' : '');
       chip.textContent = top ? 'Este anuncio vende' : cero ? 'Muchos chats, cero ventas' : '';
     });
-    // Cifras que suben
-    var t0 = performance.now();
-    (function paso(t){
-      var p = Math.min(1, (t - t0) / 800), e = 1 - Math.pow(1 - p, 3), o = {};
-      Object.keys(D).forEach(function(k){
-        o[k] = {}; ['inv','ch','v','val'].forEach(function(c){ o[k][c] = ini[k][c] + (fin[k][c] - ini[k][c]) * e; });
-        pinta(k, o[k]);
-      });
-      totales(o);
-      if (p < 1) requestAnimationFrame(paso); else cur = fin;
-    })(t0);
   }
-  var w = 0, timer;
-  function ciclo(){
-    semana(w);
-    var espera = w === 3 ? 5000 : 2600;
-    w = (w + 1) % 4;
-    timer = setTimeout(ciclo, espera);
+  function reordena(){
+    var ord = orden(), antes = {};
+    ord.forEach(function(k){ antes[k] = rows[k].getBoundingClientRect().top; });
+    etiquetas(ord);
+    ord.forEach(function(k){ tbody.appendChild(rows[k]); });
+    ord.forEach(function(k){
+      var dy = antes[k] - rows[k].getBoundingClientRect().top;
+      if (Math.abs(dy) > 1){ rows[k].style.transition = 'none'; rows[k].style.transform = 'translateY(' + dy + 'px)'; }
+    });
+    void tbody.offsetWidth;
+    ord.forEach(function(k){ rows[k].style.transition = ''; rows[k].style.transform = ''; });
+  }
+  function reinicia(){
+    E = {}; for (var k in BASE){ E[k] = Object.assign({}, BASE[k]); pintaFila(k, E[k]); }
+    var ord = orden(); etiquetas(ord); ord.forEach(function(k){ tbody.appendChild(rows[k]); });
+    totales(false); paso = 0;
+  }
+  function siguiente(){
+    if (paso >= GUION.length){
+      // Pausa al final y vuelta al principio con un fundido suave
+      tbody.style.transition = 'opacity .5s ease'; tbody.style.opacity = '0';
+      timer = setTimeout(function(){ reinicia(); tbody.style.opacity = '1'; timer = setTimeout(siguiente, 2200); }, 600);
+      return;
+    }
+    var g = GUION[paso++], k = g[0], o = E[k];
+    if (g[1] === 'ch'){ o.ch += g[2]; pintaFila(k, o); late(q(k,'ch')); late(q(k,'inv')); }
+    else { o.v += 1; o.val += g[2]; pintaFila(k, o); late(q(k,'v')); late(q(k,'ret')); }
+    totales(true);
+    setTimeout(reordena, 500);
+    timer = setTimeout(siguiente, paso >= GUION.length ? 4500 : 2000);
   }
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  reinicia();
   function empezar(){
     s.classList.add('lza-ver');
     if (reduce) return;
-    setTimeout(function(){ s.classList.add('lza-vivo'); ciclo(); }, 2600);
+    setTimeout(function(){ s.classList.add('lza-vivo'); siguiente(); }, 2400);
   }
   if (!('IntersectionObserver' in window)) { empezar(); return; }
   new IntersectionObserver(function(es, obs){
@@ -1110,7 +1110,7 @@ Selecciona la que haya tenido novedades.<time>10:15</time></div>
   }, {threshold:.3}).observe(s.querySelector('.lza-panel'));
   document.addEventListener('visibilitychange', function(){
     if (!s.classList.contains('lza-vivo')) return;
-    clearTimeout(timer); if (!document.hidden) timer = setTimeout(ciclo, 800);
+    clearTimeout(timer); if (!document.hidden) timer = setTimeout(siguiente, 1000);
   });
 })();
 </script>
